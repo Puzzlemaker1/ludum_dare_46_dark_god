@@ -2,20 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+
+    public enum UserStates
+    {
+        cultist,
+        otherSpell,
+        thirdSpell,
+        fourthSpell,
+        fifthSpell
+    }
+    public UserStates curUserState;
+
+    public BaseUnit cultist;
+    public BaseUnit knight;
+    public BaseUnit inquisition;
+    public BaseUnit necromancer;
+    public BaseUnit civilian;
+    public BaseUnit sacrifice;
+    public BaseUnit anythingElseIForgot;
+
+    private static PlayerController instance;
+    public static PlayerController Instance { get { return instance; } }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 moveVec = new Vector3();
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             moveVec.y += moveSpeed;
         }
@@ -33,7 +55,7 @@ public class CameraController : MonoBehaviour
         }
         this.transform.position += moveVec;
 
-        //Handle clicking on game objects
+        /*
         if (Input.GetMouseButtonDown(0))
         { // if left button pressed...
             Ray ray = this.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
@@ -50,6 +72,16 @@ public class CameraController : MonoBehaviour
                     Debug.Log("Tile clicked using raycast");
                 }
             }
+        }*/
+    }
+
+    public void TileClicked(Tile tile)
+    {
+        //Depending on your mode it will do different stuff.
+        if(curUserState == UserStates.cultist)
+        {
+            //Okay!
+            BaseUnit newUnit = Instantiate(cultist, tile.transform);
         }
     }
 }

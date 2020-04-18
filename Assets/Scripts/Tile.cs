@@ -49,12 +49,6 @@ public class Tile : MonoBehaviour
         //Lets just do OnMouseDown for all the tiles to check if we get a click.
         //It's simple, but dirty
         Debug.Log("Tile clicked");
-        //TODO:  Get the current user mode!
-        /*if (GameState.curUserState == GameState.UserStates.cult)
-        {
-            newUnit = Instantiate(cultist, this.transform.position);
-        }
-
-        curUnits.Add(newUnit);*/
+        PlayerController.Instance.TileClicked(this);
     }
 }
