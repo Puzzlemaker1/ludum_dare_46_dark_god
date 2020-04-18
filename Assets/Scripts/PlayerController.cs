@@ -93,7 +93,30 @@ public class PlayerController : MonoBehaviour
             {
                 tileCultist = tile.CreateUnit<Cultist>(cultist);
             }
-            
+
         }
     }
+
+        public void Spell1Clicked()
+        {
+
+        }
+        public void Spell2Clicked()
+        {
+
+        }
+        public void Spell3Clicked()
+        {
+
+        }
+        public void Spell4Clicked()
+        {
+
+        }
+        public void Spell5Clicked()
+        {
+
+        }
+
+
 }
