@@ -10,7 +10,6 @@ public class Tile : MonoBehaviour, IPointerClickHandler
 
     public GameObject CharBase;
 
-    private ArrayList curUnits;
     public enum TileTypeEnum
     {
         test1,

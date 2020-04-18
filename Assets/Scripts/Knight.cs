@@ -24,5 +24,17 @@ public class Knight : BaseUnit
             MoveUnit(moveVec);
             moveTimer = 0;
         }
+
+        //Now check for combat
+        Tile tile = GetComponentInParent<Tile>();
+        Cultist cultist = tile.GetComponentInChildren<Cultist>();
+
+        if(cultist != null)
+        {
+            Debug.Log("MORTAL COMMBAAAAT");
+            //MORTAL COMBAAAAT
+            cultist.LoseHealth(1);
+            LoseHealth(1);
+        }
     }
 }

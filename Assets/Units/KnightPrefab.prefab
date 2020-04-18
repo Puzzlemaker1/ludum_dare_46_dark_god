@@ -46,4 +46,5 @@ MonoBehaviour:
   sprite1: {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   sprite2: {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
   health: 1
-  ticksTillMove: 1000
+  deathFX: {fileID: 108341686607824354, guid: 3b53a986108a1f34cb16ef672d7fffc8, type: 3}
+  ticksTillMove: 10
