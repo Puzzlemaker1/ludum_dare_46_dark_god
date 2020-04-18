@@ -11,7 +11,6 @@ public class Tile : MonoBehaviour, IPointerClickHandler
 
     public GameObject CharBase;
 
-
     private ArrayList curUnits;
     public enum TileTypeEnum
     {
@@ -34,12 +33,13 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         
     }
 
-    public void CreateUnit<T>(T unitSettings) where T : BaseUnit
+    public T CreateUnit<T>(T unitSettings) where T : BaseUnit
     {
         GameObject particles = Instantiate(CharBase, this.transform);
         T newUnit = particles.AddComponent<T>();
         newUnit.InitializeUnit(unitSettings);
         Debug.Log("Unit created!");
+        return newUnit;
     }
 
     public void OnPointerClick(PointerEventData data)

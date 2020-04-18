@@ -84,7 +84,16 @@ public class PlayerController : MonoBehaviour
         if(curUserState == UserStates.cultist)
         {
             //Okay!
-            tile.CreateUnit<Cultist>(cultist);
+            Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
+            if (tileCultist != null)
+            {
+                tileCultist.health += 1;
+            }
+            else
+            {
+                tileCultist = tile.CreateUnit<Cultist>(cultist);
+            }
+            
         }
     }
 }

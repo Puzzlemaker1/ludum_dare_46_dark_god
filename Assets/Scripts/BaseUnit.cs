@@ -7,7 +7,7 @@ public class BaseUnit : MonoBehaviour
     private float timeSinceUpdate;
     public Sprite sprite1;
     public Sprite sprite2;
-    public int unitCount = 1;
+    public int health = 1;
 
     public void InitializeUnit(BaseUnit settings)
     {
@@ -45,6 +45,25 @@ public class BaseUnit : MonoBehaviour
             timeSinceUpdate = 0.0f;
 
             UnitUpdate();
+        }
+        if(health < 0)
+        {
+            //Kill self!
+            Destroy(this);
+            return;
+        }
+
+        int curParticleCount = this.GetComponent<ParticleSystem>().particleCount;
+        if (curParticleCount < health)
+        {
+            this.GetComponent<ParticleSystem>().Emit(1);
+        }
+        else if (curParticleCount > health)
+        {
+            ParticleSystem.Particle[] particles = new ParticleSystem.Particle[curParticleCount];
+            this.GetComponent<ParticleSystem>().GetParticles(particles);
+            particles[0].remainingLifetime = -1;
+            this.GetComponent<ParticleSystem>().SetParticles(particles);
         }
     }
 
