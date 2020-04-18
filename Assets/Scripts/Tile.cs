@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPointerClickHandler
 {
     public bool blocking;
     public int xCoord;
@@ -43,12 +44,19 @@ public class Tile : MonoBehaviour
     {
 
     }
-    
-    private void OnMouseDown()
+    public void OnPointerClick(PointerEventData data)
     {
         //Lets just do OnMouseDown for all the tiles to check if we get a click.
         //It's simple, but dirty
         Debug.Log("Tile clicked");
         PlayerController.Instance.TileClicked(this);
+
     }
+
+    private void AddUnit()
+    {
+
+    }
+
+
 }
