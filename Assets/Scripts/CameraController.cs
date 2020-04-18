@@ -32,5 +32,24 @@ public class CameraController : MonoBehaviour
             moveVec.x += moveSpeed;
         }
         this.transform.position += moveVec;
+
+        //Handle clicking on game objects
+        if (Input.GetMouseButtonDown(0))
+        { // if left button pressed...
+            Ray ray = this.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            Debug.Log("Click!");
+            if (Physics.Raycast(ray, out hit))
+            {
+                // the object identified by hit.transform was clicked
+                // do whatever you want
+                Debug.Log(hit.transform.gameObject);
+                Tile clickedTile = hit.transform.gameObject.GetComponent<Tile>();
+                if(clickedTile != null)
+                {
+                    Debug.Log("Tile clicked using raycast");
+                }
+            }
+        }
     }
 }
