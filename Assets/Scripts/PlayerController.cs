@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,7 +30,11 @@ public class PlayerController : MonoBehaviour
 
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
-
+    public Image SpellButton1Image;
+    public Image SpellButton2Image;
+    public Image SpellButton3Image;
+    public Image SpellButton4Image;
+    public Image SpellButton5Image;
     // Start is called before the first frame update
     void Start()
     {
@@ -116,7 +121,16 @@ public class PlayerController : MonoBehaviour
         }
         public void Spell2Clicked()
         {
-
+          if(curUserState == UserStates.cultist)
+          {
+            curUserState = UserStates.knight;
+            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Cultist");
+          }
+          else if(curUserState == UserStates.knight)
+          {
+            curUserState = UserStates.cultist;
+            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Knight");
+          }
         }
         public void Spell3Clicked()
         {

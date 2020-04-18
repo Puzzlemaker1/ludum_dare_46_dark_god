@@ -46,10 +46,15 @@ SpriteAtlas:
     - {fileID: 21300000, guid: ba1253f7205d062428bdbfd0d497cd91, type: 3}
     - {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
     - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
-    totalSpriteSurfaceArea: 768
+    - {fileID: 21300000, guid: ab50b15074e06c840b898be2935372ed, type: 3}
+    - {fileID: 21300000, guid: 52d87afff3dac5944a4fa0346674d56e, type: 3}
+    - {fileID: 21300000, guid: 589d3148d295e2a4ba4cc6d1a40ee389, type: 3}
+    - {fileID: 21300000, guid: f8a350fca46ed8744aba8d3d72b9f37d, type: 3}
+    totalSpriteSurfaceArea: 1728
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: ab50b15074e06c840b898be2935372ed, type: 3}
   - {fileID: 21300000, guid: 81ab9112e0670854da51234be16ea80b, type: 3}
   - {fileID: 21300000, guid: ffd918d332e699148b6225b7ed4a2071, type: 3}
   - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
@@ -57,16 +62,20 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a6d238e6386d1e249b7a6e9eaf629bf3, type: 3}
   - {fileID: 21300000, guid: dd5385277d25bb449812b28f6ed480ac, type: 3}
   - {fileID: 21300000, guid: ba1253f7205d062428bdbfd0d497cd91, type: 3}
+  - {fileID: 21300000, guid: 589d3148d295e2a4ba4cc6d1a40ee389, type: 3}
   - {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
   - {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
   - {fileID: 21300000, guid: 40e76fbbb3ca51844b5e7481da0a5acf, type: 3}
   - {fileID: 21300000, guid: ac59e3dbfd5818d4a80d83af0f99b6f0, type: 3}
+  - {fileID: 21300000, guid: f8a350fca46ed8744aba8d3d72b9f37d, type: 3}
   - {fileID: 21300000, guid: 3feaf01df0716334b8336307dc9c3384, type: 3}
   - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
   - {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
   - {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
+  - {fileID: 21300000, guid: 52d87afff3dac5944a4fa0346674d56e, type: 3}
   m_PackedSpriteNamesToIndex:
+  - Arrow Down
   - Necromancer1
   - Necromancer2
   - Villager2
@@ -74,14 +83,17 @@ SpriteAtlas:
   - victimC1
   - victimB2
   - victimc2
+  - Arrow Right
   - Cultist1
   - Cultist2
   - victimB1
   - Inquisitor1
+  - Arrow Up
   - Inquisitor2
   - victimA1
   - knight2
   - knight1
   - victimA2
+  - Arrow Left
   m_Tag: NPC Sprite Atlas
   m_IsVariant: 0
