@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
     public bool blocking;
-    public int xCoord;
-    public int yCoord;
+    public Vector2Int coord;
 
     public GameObject CharBase;
 
@@ -25,6 +24,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         type = (TileTypeEnum)Random.Range(0, 2);
+        
     }
 
     // Update is called once per frame

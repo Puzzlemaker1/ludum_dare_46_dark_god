@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite1: {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   sprite2: {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
+  health: 1
+  ticksTillMove: 1000
