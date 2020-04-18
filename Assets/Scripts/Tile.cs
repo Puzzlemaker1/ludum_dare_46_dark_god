@@ -42,21 +42,12 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         Debug.Log("Unit created!");
     }
 
-    private void AddUnit()
-    {
-
-    }
     public void OnPointerClick(PointerEventData data)
     {
         //Lets just do OnMouseDown for all the tiles to check if we get a click.
         //It's simple, but dirty
         Debug.Log("Tile clicked");
         PlayerController.Instance.TileClicked(this);
-
-    }
-
-    private void AddUnit()
-    {
 
     }
 
