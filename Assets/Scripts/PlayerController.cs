@@ -121,16 +121,7 @@ public class PlayerController : MonoBehaviour
         }
         public void Spell2Clicked()
         {
-          if(curUserState == UserStates.cultist)
-          {
-            curUserState = UserStates.knight;
-            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Cultist");
-          }
-          else if(curUserState == UserStates.knight)
-          {
-            curUserState = UserStates.cultist;
-            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Knight");
-          }
+
         }
         public void Spell3Clicked()
         {
@@ -143,6 +134,19 @@ public class PlayerController : MonoBehaviour
         public void Spell5Clicked()
         {
 
+        }
+        public void knightdebugClicked()
+        {
+          if(curUserState == UserStates.cultist)
+          {
+            curUserState = UserStates.knight;
+            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Cultist");
+          }
+          else if(curUserState == UserStates.knight)
+          {
+            curUserState = UserStates.cultist;
+            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Knight");
+          }
         }
 
 
