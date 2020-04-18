@@ -67,6 +67,29 @@ public class BaseUnit : MonoBehaviour
         }
     }
 
+    public void MoveUnit(Vector2Int dir)
+    {
+        if(dir.magnitude > 1)
+        {
+            //Extra move?
+            Debug.LogError("Too much movement?");
+        }
+        Tile tile = this.GetComponentInParent<Tile>();
+        GridManager grid = tile.GetComponentInParent<GridManager>();
+        Debug.Log(tile.coord);
+        Vector2Int newCoord = tile.coord + dir;
+        Debug.Log(newCoord);
+        if(newCoord.x < 0 || newCoord.y < 0 || newCoord.x > grid.size.x || newCoord.y > grid.size.y)
+        {
+            //Invalid move!
+            Debug.Log("Invalid Move!");
+            //Should we return a false?
+            return;
+        }
+        this.transform.parent = grid.getTile(newCoord).transform;
+        this.transform.SetPositionAndRotation(this.transform.parent.position, this.transform.parent.rotation);
+    }
+
     protected virtual void UnitStart()
     {
 

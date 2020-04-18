@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    public int xSize, ySize;
+    public Vector2Int size;
     public float xScale, yScale;
     public Tile prefab;
 
@@ -12,18 +12,21 @@ public class GridManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tiles = new Tile[xSize, ySize];
+        tiles = new Tile[size.x, size.y];
         Tile clone;
-        for(int x = 0; x < xSize; x++)
+        for(int x = 0; x < size.x; x++)
         {
-            for(int y = 0; y < ySize; y++)
+            for(int y = 0; y < size.y; y++)
             {
                 clone = Instantiate(prefab, new Vector3(xScale * x, yScale * y), Quaternion.identity);
-                clone.yCoord = y;
-                clone.xCoord = x;
+                clone.coord = new Vector2Int(x, y);
+                clone.transform.parent = this.transform;
                 tiles[x, y] = clone;
+                
             }
         }
+
+        
     }
 
     // Update is called once per frame
@@ -32,8 +35,8 @@ public class GridManager : MonoBehaviour
         
     }
 
-    public Tile getTile(int x, int y)
+    public Tile getTile(Vector2Int tileCoord)
     {
-        return tiles[x, y];
+        return tiles[tileCoord.x, tileCoord.y];
     }
 }

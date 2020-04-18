@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public enum UserStates
     {
         cultist,
-        otherSpell,
+        knight,
         thirdSpell,
         fourthSpell,
         fifthSpell
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         instance = this;
+
     }
 
     // Update is called once per frame
@@ -94,6 +95,18 @@ public class PlayerController : MonoBehaviour
                 tileCultist = tile.CreateUnit<Cultist>(cultist);
             }
 
+        }
+        else if(curUserState == UserStates.knight)
+        {
+            Knight tileKnight = tile.GetComponentInChildren<Knight>();
+            if (tileKnight != null)
+            {
+                tileKnight.health += 1;
+            }
+            else
+            {
+                tileKnight = tile.CreateUnit<Knight>(knight);
+            }
         }
     }
 

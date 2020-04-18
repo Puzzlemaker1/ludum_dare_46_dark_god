@@ -5,6 +5,8 @@ using UnityEngine;
 public class Knight : BaseUnit
 {
     // Start is called before the first frame update
+    public int ticksTillMove;
+    private int moveTimer;
     override protected void UnitStart()
     {
         
@@ -14,6 +16,13 @@ public class Knight : BaseUnit
     protected override void UnitUpdate()
     {
         //Do your stuff here
-        
+        moveTimer++;
+        if (moveTimer > ticksTillMove)
+        {
+            //Move randomly
+            Vector2Int moveVec = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+            MoveUnit(moveVec);
+            moveTimer = 0;
+        }
     }
 }

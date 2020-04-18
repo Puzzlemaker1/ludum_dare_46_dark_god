@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
-  curUserState: 0
+  curUserState: 1
   cultist: {fileID: 6089771476811398025, guid: e56963ec605504f4695b74b57309c446, type: 3}
   knight: {fileID: -7450504419167669928, guid: d78b06e901ca3394ea8c7756695d68ea, type: 3}
   inquisition: {fileID: 0}
@@ -2516,8 +2516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5038af59d3a914d907b1de97c9ef6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 10
-  ySize: 10
+  size: {x: 10, y: 10}
   xScale: 1
   yScale: 1
   prefab: {fileID: 5695715102138982023, guid: 2ce3b961612ba18449579ba5eaa47172, type: 3}
