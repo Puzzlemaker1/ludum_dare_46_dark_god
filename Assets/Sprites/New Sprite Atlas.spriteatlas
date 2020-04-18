@@ -43,10 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: a9172bd51bed00245b14007628dee65d, type: 3}
-    totalSpriteSurfaceArea: 10576
+    totalSpriteSurfaceArea: 60576
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: ef8939707bc8ae448bbe82dca5929e6a, type: 3}
   - {fileID: 21300000, guid: 6ffbf41523eaaac439ec4538f78f3ae4, type: 3}
   - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
   - {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
@@ -54,13 +55,18 @@ SpriteAtlas:
   - {fileID: 21300000, guid: dd5385277d25bb449812b28f6ed480ac, type: 3}
   - {fileID: 21300000, guid: ba1253f7205d062428bdbfd0d497cd91, type: 3}
   - {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
+  - {fileID: 21300000, guid: 1c35ddbab542a2f4787dcb857cf9bab3, type: 3}
   - {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
+  - {fileID: 21300000, guid: 7829941b4d5c73e4c93cef41e6666d52, type: 3}
   - {fileID: 21300000, guid: 40e76fbbb3ca51844b5e7481da0a5acf, type: 3}
+  - {fileID: 21300000, guid: 62d3d73df5494c24db1bcd27031f0c98, type: 3}
   - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
+  - {fileID: 21300000, guid: e89f296e122229d4a85da689469d28fe, type: 3}
   - {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
   - {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
   m_PackedSpriteNamesToIndex:
+  - CastleTile
   - BaseTile
   - Villager2
   - Villager1
@@ -68,9 +74,13 @@ SpriteAtlas:
   - victimB2
   - victimc2
   - Cultist1
+  - TavernTile
   - Cultist2
+  - HouseTile
   - victimB1
+  - FieldTile
   - victimA1
+  - ChurchTile
   - knight2
   - knight1
   - victimA2
