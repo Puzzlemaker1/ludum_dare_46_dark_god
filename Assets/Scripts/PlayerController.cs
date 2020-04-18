@@ -16,13 +16,16 @@ public class PlayerController : MonoBehaviour
     }
     public UserStates curUserState;
 
-    public BaseUnit cultist;
-    public BaseUnit knight;
+
+    public Cultist cultist;
+    public Knight knight;
     public BaseUnit inquisition;
     public BaseUnit necromancer;
-    public BaseUnit civilian;
-    public BaseUnit sacrifice;
+    public BaseUnit villager;
+    public Victim victim;
     public BaseUnit anythingElseIForgot;
+
+    public float updateTime;
 
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
@@ -81,7 +84,7 @@ public class PlayerController : MonoBehaviour
         if(curUserState == UserStates.cultist)
         {
             //Okay!
-            BaseUnit newUnit = Instantiate(cultist, tile.transform);
+            tile.CreateUnit<Cultist>(cultist);
         }
     }
 }

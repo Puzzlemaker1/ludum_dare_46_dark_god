@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4494084558754531589}
   - component: {fileID: 4494084558754531588}
   - component: {fileID: 4494084558754531587}
-  - component: {fileID: 98016127533515091}
   m_Layer: 8
   m_Name: CharacterBase
   m_TagString: Unit
@@ -1481,8 +1480,8 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
-    - sprite: {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
+    - sprite: {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
+    - sprite: {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4765,15 +4764,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &98016127533515091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4494084558754531586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5384f56399876fe48b939c2895f36f9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

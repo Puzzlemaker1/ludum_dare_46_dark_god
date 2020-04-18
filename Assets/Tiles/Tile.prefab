@@ -48,13 +48,8 @@ MonoBehaviour:
   blocking: 0
   xCoord: 0
   yCoord: 0
-  cultist: {fileID: 0}
-  knight: {fileID: 0}
-  inquisition: {fileID: 0}
-  necromancer: {fileID: 0}
-  civilian: {fileID: 0}
-  sacrifice: {fileID: 0}
-  anythingElseIForgot: {fileID: 0}
+  CharBase: {fileID: 4494084558754531586, guid: 232119c9897abef4fbcba387f3cb4950,
+    type: 3}
 --- !u!212 &314579312116412591
 SpriteRenderer:
   m_ObjectHideFlags: 0

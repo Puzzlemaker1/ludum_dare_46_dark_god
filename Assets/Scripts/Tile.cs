@@ -9,13 +9,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     public int xCoord;
     public int yCoord;
 
-    public BaseUnit cultist;
-    public BaseUnit knight;
-    public BaseUnit inquisition;
-    public BaseUnit necromancer;
-    public BaseUnit civilian;
-    public BaseUnit sacrifice;
-    public BaseUnit anythingElseIForgot;
+    public GameObject CharBase;
 
 
     private ArrayList curUnits;
@@ -38,6 +32,14 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         
+    }
+
+    public void CreateUnit<T>(T unitSettings) where T : BaseUnit
+    {
+        GameObject particles = Instantiate(CharBase, this.transform);
+        T newUnit = particles.AddComponent<T>();
+        newUnit.InitializeUnit(unitSettings);
+        Debug.Log("Unit created!");
     }
 
     private void AddUnit()
