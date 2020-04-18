@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Sprite Atlas
+  m_Name: NPC Sprite Atlas
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -16,73 +16,72 @@ SpriteAtlas:
       maxTextureSize: 2048
       textureCompression: 0
       filterMode: 0
-      generateMipMaps: 1
+      generateMipMaps: 0
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings:
-    - serializedVersion: 3
-      m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 2048
-      m_ResizeAlgorithm: 0
-      m_TextureFormat: -1
-      m_TextureCompression: 0
-      m_CompressionQuality: 50
-      m_CrunchedCompression: 0
-      m_AllowsAlphaSplitting: 0
-      m_Overridden: 0
-      m_AndroidETC2FallbackOverride: 0
-      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    platformSettings: []
     packingSettings:
       serializedVersion: 2
-      padding: 2
+      padding: 4
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 0
+      enableRotation: 1
       enableTightPacking: 1
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: a9172bd51bed00245b14007628dee65d, type: 3}
-    totalSpriteSurfaceArea: 60576
+    - {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
+    - {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
+    - {fileID: 21300000, guid: ac59e3dbfd5818d4a80d83af0f99b6f0, type: 3}
+    - {fileID: 21300000, guid: 3feaf01df0716334b8336307dc9c3384, type: 3}
+    - {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
+    - {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
+    - {fileID: 21300000, guid: 81ab9112e0670854da51234be16ea80b, type: 3}
+    - {fileID: 21300000, guid: ffd918d332e699148b6225b7ed4a2071, type: 3}
+    - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
+    - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
+    - {fileID: 21300000, guid: 40e76fbbb3ca51844b5e7481da0a5acf, type: 3}
+    - {fileID: 21300000, guid: dd5385277d25bb449812b28f6ed480ac, type: 3}
+    - {fileID: 21300000, guid: a6d238e6386d1e249b7a6e9eaf629bf3, type: 3}
+    - {fileID: 21300000, guid: ba1253f7205d062428bdbfd0d497cd91, type: 3}
+    - {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
+    - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
+    totalSpriteSurfaceArea: 768
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: ef8939707bc8ae448bbe82dca5929e6a, type: 3}
-  - {fileID: 21300000, guid: 6ffbf41523eaaac439ec4538f78f3ae4, type: 3}
+  - {fileID: 21300000, guid: 81ab9112e0670854da51234be16ea80b, type: 3}
+  - {fileID: 21300000, guid: ffd918d332e699148b6225b7ed4a2071, type: 3}
   - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
   - {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
   - {fileID: 21300000, guid: a6d238e6386d1e249b7a6e9eaf629bf3, type: 3}
   - {fileID: 21300000, guid: dd5385277d25bb449812b28f6ed480ac, type: 3}
   - {fileID: 21300000, guid: ba1253f7205d062428bdbfd0d497cd91, type: 3}
   - {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
-  - {fileID: 21300000, guid: 1c35ddbab542a2f4787dcb857cf9bab3, type: 3}
   - {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
-  - {fileID: 21300000, guid: 7829941b4d5c73e4c93cef41e6666d52, type: 3}
   - {fileID: 21300000, guid: 40e76fbbb3ca51844b5e7481da0a5acf, type: 3}
-  - {fileID: 21300000, guid: 62d3d73df5494c24db1bcd27031f0c98, type: 3}
+  - {fileID: 21300000, guid: ac59e3dbfd5818d4a80d83af0f99b6f0, type: 3}
+  - {fileID: 21300000, guid: 3feaf01df0716334b8336307dc9c3384, type: 3}
   - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
-  - {fileID: 21300000, guid: e89f296e122229d4a85da689469d28fe, type: 3}
   - {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
   - {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
   m_PackedSpriteNamesToIndex:
-  - CastleTile
-  - BaseTile
+  - Necromancer1
+  - Necromancer2
   - Villager2
   - Villager1
   - victimC1
   - victimB2
   - victimc2
   - Cultist1
-  - TavernTile
   - Cultist2
-  - HouseTile
   - victimB1
-  - FieldTile
+  - Inquisitor1
+  - Inquisitor2
   - victimA1
-  - ChurchTile
   - knight2
   - knight1
   - victimA2
-  m_Tag: New Sprite Atlas
+  m_Tag: NPC Sprite Atlas
   m_IsVariant: 0
