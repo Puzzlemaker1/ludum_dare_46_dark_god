@@ -43,10 +43,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: a9172bd51bed00245b14007628dee65d, type: 3}
-    totalSpriteSurfaceArea: 576
+    totalSpriteSurfaceArea: 10576
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 6ffbf41523eaaac439ec4538f78f3ae4, type: 3}
   - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
   - {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
   - {fileID: 21300000, guid: a6d238e6386d1e249b7a6e9eaf629bf3, type: 3}
@@ -60,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
   m_PackedSpriteNamesToIndex:
+  - BaseTile
   - Villager2
   - Villager1
   - victimC1
