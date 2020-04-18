@@ -953,13 +953,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   curUserState: 0
-  cultist: {fileID: 98016127533515091, guid: 232119c9897abef4fbcba387f3cb4950, type: 3}
-  knight: {fileID: 0}
+  cultist: {fileID: 6089771476811398025, guid: e56963ec605504f4695b74b57309c446, type: 3}
+  knight: {fileID: -7450504419167669928, guid: d78b06e901ca3394ea8c7756695d68ea, type: 3}
   inquisition: {fileID: 0}
   necromancer: {fileID: 0}
-  civilian: {fileID: 0}
-  sacrifice: {fileID: 0}
+  villager: {fileID: 0}
+  victim: {fileID: 1114751799938583139, guid: 628a145e9ebf8314eb7f4c86914988d6, type: 3}
   anythingElseIForgot: {fileID: 0}
+  updateTime: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
