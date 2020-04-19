@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Victim : BaseUnit
 {
+    public int ticksTillMove;
+    private int moveTimer;
+
     public Sprite[] types = new Sprite[6];
     // Start is called before the first frame update
     override protected void UnitStart()
@@ -18,6 +21,18 @@ public class Victim : BaseUnit
     protected override void UnitUpdate()
     {
         //Do your stuff here
-        
+        moveTimer++;
+        if (moveTimer > ticksTillMove)
+        {
+            //Move randomly
+            Tile tile = GetComponentInParent<Tile>();
+            Cultist cultist = tile.GetComponentInChildren<Cultist>();
+            if(cultist != null && cultist.hasLeader)
+            {
+                MoveUnit(cultist.leaderDir);
+            }
+
+            moveTimer = 0;
+        }
     }
 }
