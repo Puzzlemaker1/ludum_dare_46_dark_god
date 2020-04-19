@@ -48,22 +48,37 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 7829941b4d5c73e4c93cef41e6666d52, type: 3}
     - {fileID: 21300000, guid: 62d3d73df5494c24db1bcd27031f0c98, type: 3}
     - {fileID: 21300000, guid: e89f296e122229d4a85da689469d28fe, type: 3}
-    totalSpriteSurfaceArea: 60000
+    - {fileID: 21300000, guid: 6652adcf089a30e41bb633f31f335c22, type: 3}
+    - {fileID: 21300000, guid: f2b854bf1bcd0e44f8de7f24e856336e, type: 3}
+    - {fileID: 21300000, guid: 7857a727d2586dd4794455c64413f154, type: 3}
+    - {fileID: 21300000, guid: e8082716a006c554580a2f1df66c8121, type: 3}
+    - {fileID: 21300000, guid: 2c04c1559ae902e4481d065ae88342aa, type: 3}
+    totalSpriteSurfaceArea: 110000
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: ef8939707bc8ae448bbe82dca5929e6a, type: 3}
   - {fileID: 21300000, guid: 6ffbf41523eaaac439ec4538f78f3ae4, type: 3}
+  - {fileID: 21300000, guid: 2c04c1559ae902e4481d065ae88342aa, type: 3}
+  - {fileID: 21300000, guid: e8082716a006c554580a2f1df66c8121, type: 3}
+  - {fileID: 21300000, guid: 7857a727d2586dd4794455c64413f154, type: 3}
   - {fileID: 21300000, guid: 1c35ddbab542a2f4787dcb857cf9bab3, type: 3}
   - {fileID: 21300000, guid: 7829941b4d5c73e4c93cef41e6666d52, type: 3}
   - {fileID: 21300000, guid: 62d3d73df5494c24db1bcd27031f0c98, type: 3}
   - {fileID: 21300000, guid: e89f296e122229d4a85da689469d28fe, type: 3}
+  - {fileID: 21300000, guid: f2b854bf1bcd0e44f8de7f24e856336e, type: 3}
+  - {fileID: 21300000, guid: 6652adcf089a30e41bb633f31f335c22, type: 3}
   m_PackedSpriteNamesToIndex:
   - CastleTile
   - BaseTile
+  - SpellSuccubus
+  - SpellNecromancer
+  - Spell2knight
   - TavernTile
   - HouseTile
   - FieldTile
   - ChurchTile
+  - Spell2Cultist
+  - SacrificeTile
   m_Tag: Tile Sprite Atlas
   m_IsVariant: 0
