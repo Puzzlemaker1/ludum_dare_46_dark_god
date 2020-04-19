@@ -73,8 +73,20 @@ public class Inquisitor : BaseUnit
 
         if (moveDir.magnitude == 0)
         {
-            MoveUnitRandom();
-            curWanderTime++;
+            if (curWanderTime > this.wanderTime)
+            {
+                MoveUnit(this.hometile.coord - tile.coord);
+                if(this.hometile.coord == tile.coord)
+                {
+                    //Made it home, start wandering again.
+                    curWanderTime = 0;
+                }
+            }
+            else
+            {
+                MoveUnitRandom();
+                curWanderTime++;
+            }
         }
         else
         {

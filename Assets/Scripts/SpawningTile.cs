@@ -27,7 +27,7 @@ public class SpawningTile <T>  : Tile
             spawnTimer++;
             if (spawnTimer > (initialSpawn ? initialSpawnTicks : ticksTillRespawn) + randomDelay)
             {
-                spawnedUnit = CreateUnit<T>(spawningUnit);
+                spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
                 spawnTimer = 0;
                 initialSpawn = false;
             }
