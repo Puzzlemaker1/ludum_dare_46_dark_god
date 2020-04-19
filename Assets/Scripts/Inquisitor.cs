@@ -45,12 +45,13 @@ public class Inquisitor : BaseUnit
                     }
                     enemyLocation.Set(-1, -1);
                     castleLocation.Set(-1, -1);
+                    return;
                 }
                 else
                 {
                     if (!grid.IsValidTile(castleLocation))
                     {
-                        Castle closestCastle = LocateClosestGridEntity<Castle>(6);
+                        Castle closestCastle = LocateClosestGridEntity<Castle>();
                         if (closestCastle != default(Castle))
                         {
                             castleLocation = closestCastle.coord;

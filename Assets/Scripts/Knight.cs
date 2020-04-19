@@ -41,9 +41,16 @@ public class Knight : BaseUnit
             else
             {
                 //No combat or victims to save.
-                //Check if we have an alert
-                if (grid.IsValidTile(enemyLocation))
+                //First:  Think with your pants.
+                Succubus foundSuccubus = LocateClosestGridEntity<Succubus>(2);
+                if(foundSuccubus != null)
                 {
+                    //Hey there cute stuff
+                    MoveUnit(foundSuccubus.GetComponentInParent<Tile>().coord - tile.coord);
+                }
+                else if (grid.IsValidTile(enemyLocation))
+                {
+                    //Check if we have an alert
                     if (enemyLocation == tile.coord)
                     {
                         //Set it to null, we got to the point.

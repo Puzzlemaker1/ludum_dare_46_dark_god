@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public BaseUnit necromancer;
     public BaseUnit villager;
     public Victim victim;
-    public BaseUnit anythingElseIForgot;
+    public Succubus succubus;
 
     public float updateTime;
 
@@ -153,6 +153,10 @@ public class PlayerController : MonoBehaviour
                 //TileClicked(tile);
                 //curUserState = UserStates.leader;
             }
+        }
+        else if(curUserState == UserStates.succubus)
+        {
+            Succubus tileSuccubus = tile.CreateUnit<Succubus>(succubus);
         }
     }
 

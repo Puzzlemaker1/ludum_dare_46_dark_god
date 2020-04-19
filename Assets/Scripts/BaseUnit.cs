@@ -115,6 +115,12 @@ public class BaseUnit : MonoBehaviour
         return entities;
     }
 
+    public T LocateClosestGridEntity<T>()
+    {
+        //HACKY HACK
+        return LocateClosestGridEntity<T>(100);
+    }
+
     public T LocateClosestGridEntity<T>(int distance)
     {
         List<Tuple<T, float>> entities = LocateGridEntity<T>(distance);
