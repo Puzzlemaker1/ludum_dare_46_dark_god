@@ -11,7 +11,8 @@ public class BaseUnit : MonoBehaviour
     public Sprite sprite2;
     public int health = 1;
     public GameObject deathFX;
-    public MainMenu SoundController;
+    public Camera SoundController;
+    public AudioClip clip;
 
     public void InitializeUnit(BaseUnit settings)
     {
@@ -28,6 +29,8 @@ public class BaseUnit : MonoBehaviour
             field.SetValue(this, field.GetValue(settings));
         }
         Debug.Log("Unit initialized");
+
+        SoundController = FindObjectOfType<Camera>();
     }
 
     // Start is called before the first frame update
@@ -113,8 +116,7 @@ public class BaseUnit : MonoBehaviour
         Debug.Log("Health lost");
         this.health -= healthDelta;
         Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
-        // this.GetComponent<AudioSource>().volume = SoundController.volume;
-        this.GetComponent<AudioSource>().Play();
+        SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
         if (this.health <= 0)
         {
             Debug.Log("Unit dead");
