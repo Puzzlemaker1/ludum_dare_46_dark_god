@@ -25,9 +25,7 @@ public class Victim : BaseUnit
         moveTimer++;
         if (moveTimer > ticksTillMove)
         {
-            //Move randomly
             Tile tile = GetComponentInParent<Tile>();
-            Debug.Log(tile.GetType());
             if(tile is SacrificialChamber)
             {
                 //Sacrifice yourself!
@@ -55,7 +53,7 @@ public class Victim : BaseUnit
                 {
                     if(neighborCultists[i].hasLeader)
                     {
-                        dir = neighborCultists[i].GetComponentInParent<Tile>().coord - this.GetComponentInParent<Tile>().coord;
+                        dir = neighborCultists[i].GetComponentInParent<Tile>().coord - tile.coord;
                     }
                 }
                 MoveUnit(dir);

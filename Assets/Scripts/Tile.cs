@@ -13,7 +13,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        
+        TileStart();
     }
 
     // Update is called once per frame
@@ -48,6 +48,11 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     }
 
     public virtual void TileUpdate()
+    {
+
+    }
+
+    public virtual void TileStart()
     {
 
     }

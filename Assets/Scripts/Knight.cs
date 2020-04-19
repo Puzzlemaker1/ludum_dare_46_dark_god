@@ -7,6 +7,7 @@ public class Knight : BaseUnit
     // Start is called before the first frame update
     public int ticksTillMove;
     private int moveTimer;
+    public Vector2Int enemyLocation = new Vector2Int(-1, -1);
     override protected void UnitStart()
     {
 
@@ -22,6 +23,7 @@ public class Knight : BaseUnit
         {
             //First combat (part of move timer?)
             Tile tile = GetComponentInParent<Tile>();
+            GridManager grid = this.transform.root.GetComponent<GridManager>();
             Cultist cultist = tile.GetComponentInChildren<Cultist>();
             Victim victim = tile.GetComponentInChildren<Victim>();
             if (cultist != null)
@@ -39,21 +41,36 @@ public class Knight : BaseUnit
             else
             {
                 //No combat or victims to save.
-                List<Cultist> cultists = LocateGridEntity<Cultist>(1);
-                if (cultists.Count > 0)
+                //Check if we have an alert
+                if (grid.IsValidTile(enemyLocation))
                 {
-                    //WE FOUND A CULTIST, FUCK EM UP
-                    //Grab one randomly and head towards it!
-                    Debug.Log("FOUND A CULTIST, GET EM");
-                    MoveUnit(cultists[Random.Range(0, cultists.Count)].GetComponentInParent<Tile>().coord - tile.coord);
+                    if (enemyLocation == tile.coord)
+                    {
+                        //Set it to null, we got to the point.
+                        enemyLocation.Set(-1, -1);
+                    }
+                    else
+                    {
+                        MoveUnit(enemyLocation - tile.coord);
+                    }
                 }
-                else if (!(tile is Castle))
+                else
                 {
-                    //We arn't on a castle, we should wander.
+                    List<Cultist> cultists = LocateGridEntity<Cultist>(1);
+                    if (cultists.Count > 0)
+                    {
+                        //WE FOUND A CULTIST, FUCK EM UP
+                        //Grab one randomly and head towards it!
+                        Debug.Log("FOUND A CULTIST, GET EM");
+                        MoveUnit(cultists[Random.Range(0, cultists.Count)].GetComponentInParent<Tile>().coord - tile.coord);
+                    }
+                    else if (!(tile is Castle))
+                    {
+                        //We arn't on a castle, we should wander.
 
-                    //Move randomly
-                    Vector2Int moveVec = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
-                    MoveUnit(moveVec);
+                        //Move randomly
+                        MoveUnitRandom();
+                    }
                 }
             }
             moveTimer = 0;

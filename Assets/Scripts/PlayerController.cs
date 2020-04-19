@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public GameObject charactorBase;
     public Cultist cultist;
     public Knight knight;
-    public BaseUnit inquisition;
+    public Inquisitor inquisitor;
     public BaseUnit necromancer;
     public BaseUnit villager;
     public Victim victim;

@@ -1,0 +1,98 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Inquisitor : BaseUnit
+{
+    public int ticksTillMove;
+    private int moveTimer;
+    private Vector2Int enemyLocation = new Vector2Int(-1, -1);
+    private Vector2Int castleLocation = new Vector2Int(-1, -1);
+
+    public Sprite[] types = new Sprite[6];
+    // Start is called before the first frame update
+    override protected void UnitStart()
+    {
+        Debug.Log("Victim start");
+        int type = Random.Range(0, 2);
+        this.sprite1 = types[type*2];
+        this.sprite2 = types[type*2 + 1];
+    }
+
+
+    protected override void UnitUpdate()
+    {
+        //Do your stuff here
+        moveTimer++;
+        if (moveTimer > ticksTillMove)
+        {
+            //Search out for the enemy!
+            Tile tile = GetComponentInParent<Tile>();
+            GridManager grid = this.transform.root.GetComponent<GridManager>();
+            Cultist cultist = tile.GetComponentInChildren<Cultist>();
+            if (enemyLocation != tile.coord && (tile is SacrificialChamber || cultist != null))
+            {
+                //OH SHIT
+                enemyLocation = tile.coord;
+                //Play FOUND sound or whatever
+                moveTimer = 0;
+                return;
+            }
+            Vector2Int moveDir = new Vector2Int(0, 0);
+            if (grid.IsValidTile(enemyLocation))
+            {
+                if (castleLocation == tile.coord)
+                {
+                    //We are at the castle!
+                    Knight knight = tile.GetComponentInChildren<Knight>();
+                    if (knight != null)
+                    {
+                        knight.enemyLocation = enemyLocation;
+                    }
+                    else
+                    {
+                        //Uhh?
+                    }
+                    enemyLocation.Set(-1, -1);
+                    castleLocation.Set(-1, -1);
+                }
+                else
+                {
+                    if (grid.IsValidTile(castleLocation))
+                    {
+                        Castle closestCastle = LocateClosestGridEntity<Castle>(6);
+                        if (closestCastle != default(Castle))
+                        {
+                            castleLocation = closestCastle.coord;
+                        }
+                    }
+
+                    //Move towards the castle!
+                    moveDir = castleLocation - tile.coord;
+                }
+
+            }
+            else
+            {
+
+                Cultist closestCultist = LocateClosestGridEntity<Cultist>(2);
+                if (closestCultist != default(Cultist))
+                {
+                    moveDir = closestCultist.GetComponentInParent<Tile>().coord - tile.coord;
+
+                }
+
+            }
+
+            if (moveDir.magnitude == 0)
+            {
+                MoveUnitRandom();
+            }
+            else
+            {
+                MoveUnit(moveDir);
+            }
+            moveTimer = 0;
+        }
+    }
+}

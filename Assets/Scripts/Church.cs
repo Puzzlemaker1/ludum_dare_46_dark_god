@@ -17,4 +17,9 @@ public class Church : Tile
         }
         base.TileUpdate();
     }
+
+    public override void TileStart()
+    {
+        CreateUnit<Inquisitor>(PlayerController.Instance.inquisitor);
+    }
 }

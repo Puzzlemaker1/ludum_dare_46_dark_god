@@ -14,6 +14,7 @@ public class BaseUnit : MonoBehaviour
     public GameObject deathFX;
     public Camera SoundController;
     public AudioClip clip;
+    public float maxMove = 1;
 
     public void InitializeUnit(BaseUnit settings)
     {
@@ -88,19 +89,15 @@ public class BaseUnit : MonoBehaviour
                 Tile tile = grid.getTile(coord);
                 if (tile != null)
                 {
-                    Debug.Log("Checking tile " + coord);
                     Type entityType = typeof(T);
                     T entity;
                     if(entityType.IsSubclassOf(typeof(Tile)))
                     {
-                        Debug.Log("Is a tile");
                         entity = tile.GetComponent<T>();
                     }
                     else if (entityType.IsSubclassOf(typeof(BaseUnit)))
                     {
-                        
                         entity = tile.GetComponentInChildren<T>();
-                        Debug.Log("Is a unit: " + entity);
                     }
                     else
                     {
@@ -118,34 +115,52 @@ public class BaseUnit : MonoBehaviour
         return entities;
     }
 
-    public List<T> LocateTiles<T>() where T : Tile
+    public T LocateClosestGridEntity<T>(int distance)
     {
-        List<T> tiles = new List<T>();
-        GridManager grid = this.transform.root.GetComponent<GridManager>();
-        for (int x = -1; x <= 1; x++)
+        List<T> entities = LocateGridEntity<T>(distance);
+        T closest = default(T);
+        float minMag = Mathf.Infinity;
+        for(int i = 0; i < entities.Count; i++)
         {
-            for (int y = 01; y <= 1; y++)
+            Type entityType = typeof(T);
+            float mag = Mathf.Infinity;
+            if (entityType.IsSubclassOf(typeof(Tile)))
             {
-                Vector2Int coord = new Vector2Int(x, y);
-                if (this.transform.root.GetComponent<GridManager>().IsValidTile(coord))
-                {
-                    Tile tile = grid.getTile(coord);
-                    if (tile is T)
-                    {
-                        tiles.Add((T)tile);
-                    }
-                }
+                mag = (entities[i] as Tile).coord.magnitude;
+            }
+            else if (entityType.IsSubclassOf(typeof(BaseUnit)))
+            {
+
+                mag = (entities[i] as BaseUnit).GetComponentInParent<Tile>().coord.magnitude;
+            }
+            else
+            {
+                Debug.LogError("Bad LocateClosestGridEntity call!");
+            }
+            if(mag < minMag)
+            {
+                minMag = mag;
+                closest = entities[i];
             }
         }
-        return tiles;
+        if(minMag != Mathf.Infinity)
+        {
+            return closest;
+        }
+        return default(T);
     }
 
     public void MoveUnit(Vector2Int dir)
     {
-        if (dir.magnitude > 1)
+        if (dir.magnitude > maxMove)
         {
-            //Extra move?
-            //Debug.LogError("Too much movement?");
+            //Cap it!
+            Vector2Int newDir = dir / 2;
+            if(newDir.magnitude == 0)
+            {
+                newDir.x = dir.x;
+            }
+            dir = newDir;
         }
         Tile tile = this.GetComponentInParent<Tile>();
         GridManager grid = tile.GetComponentInParent<GridManager>();
@@ -158,6 +173,12 @@ public class BaseUnit : MonoBehaviour
         }
         this.transform.parent = grid.getTile(newCoord).transform;
         this.transform.SetPositionAndRotation(this.transform.parent.position, this.transform.parent.rotation);
+    }
+
+    public void MoveUnitRandom()
+    {
+        Vector2Int moveVec = new Vector2Int(UnityEngine.Random.Range(-2, 3), UnityEngine.Random.Range(-2, 3));
+        MoveUnit(moveVec);
     }
 
     protected virtual void UnitDie()
@@ -177,7 +198,6 @@ public class BaseUnit : MonoBehaviour
     }
     public void LoseHealth(int healthDelta)
     {
-        Debug.Log("Health lost");
         this.health -= healthDelta;
         if (deathFX != null)
         {
@@ -189,7 +209,6 @@ public class BaseUnit : MonoBehaviour
         }
         if (this.health <= 0)
         {
-            Debug.Log("Unit dead");
             this.UnitDie();
         }
     }
@@ -197,7 +216,6 @@ public class BaseUnit : MonoBehaviour
     protected virtual void UnitUpdate()
     {
         //Other classes should inherit from this
-        Debug.Log("Update");
     }
 
 
