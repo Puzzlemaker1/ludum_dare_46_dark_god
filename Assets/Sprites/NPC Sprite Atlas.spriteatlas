@@ -58,7 +58,7 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 125a71264ff9c92428bed22f15099b06, type: 3}
     - {fileID: 21300000, guid: 19840b5ddeab6bb499cc9c6f839afef0, type: 3}
     - {fileID: 21300000, guid: d6f77e7505e0e1f4d9afb3d8329b8e49, type: 3}
-    totalSpriteSurfaceArea: 3109
+    totalSpriteSurfaceArea: 3397
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -66,6 +66,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 81ab9112e0670854da51234be16ea80b, type: 3}
   - {fileID: 21300000, guid: 04a9be93aa4b76f49999f62c2ba3f83c, type: 3}
   - {fileID: 21300000, guid: ffd918d332e699148b6225b7ed4a2071, type: 3}
+  - {fileID: 21300000, guid: d6f77e7505e0e1f4d9afb3d8329b8e49, type: 3}
   - {fileID: 21300000, guid: a2347416249b51748850953df93b68c2, type: 3}
   - {fileID: 21300000, guid: 125a71264ff9c92428bed22f15099b06, type: 3}
   - {fileID: 21300000, guid: 92e6cc6610467fc48bba27fc4d95daec, type: 3}
@@ -94,6 +95,7 @@ SpriteAtlas:
   - Necromancer1
   - Succubus1
   - Necromancer2
+  - SingleHouse
   - Villager2
   - Zombie2
   - Villager1

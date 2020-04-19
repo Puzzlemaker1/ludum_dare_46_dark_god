@@ -8,6 +8,7 @@ public class Cultist : BaseUnit
     public Sprite rightLeader;
     public Sprite upLeader;
     public Sprite downLeader;
+    public Sprite necroSprite;
 
     public enum LeaderState
     {
@@ -45,6 +46,7 @@ public class Cultist : BaseUnit
         Debug.Log("Adding Necromancer");
         curLeaderSprite = Instantiate(necromancerSprite);
         hasLeader = LeaderState.necromancer;
+        curLeaderSprite.sprite = necroSprite;
         curLeaderSprite.transform.position = this.transform.position;
         curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
     }
