@@ -56,7 +56,8 @@ SpriteAtlas:
     - {fileID: 21300000, guid: a451b64a48a333343944d7017a6dbbab, type: 3}
     - {fileID: 21300000, guid: fb438efb13354c841af2db6db6b470e2, type: 3}
     - {fileID: 21300000, guid: 125a71264ff9c92428bed22f15099b06, type: 3}
-    totalSpriteSurfaceArea: 2869
+    - {fileID: 21300000, guid: 19840b5ddeab6bb499cc9c6f839afef0, type: 3}
+    totalSpriteSurfaceArea: 3109
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -80,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fb438efb13354c841af2db6db6b470e2, type: 3}
   - {fileID: 21300000, guid: f8a350fca46ed8744aba8d3d72b9f37d, type: 3}
   - {fileID: 21300000, guid: 3feaf01df0716334b8336307dc9c3384, type: 3}
+  - {fileID: 21300000, guid: 19840b5ddeab6bb499cc9c6f839afef0, type: 3}
   - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
   - {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
   - {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
@@ -107,6 +109,7 @@ SpriteAtlas:
   - Zombie1
   - Arrow Up
   - Inquisitor2
+  - Necromancy
   - victimA1
   - knight2
   - knight1

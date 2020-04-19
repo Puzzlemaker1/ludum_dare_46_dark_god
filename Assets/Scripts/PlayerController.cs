@@ -154,11 +154,11 @@ public class PlayerController : MonoBehaviour
           Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
           if(tileCultist)
           {
-              if (tileCultist.hasLeader == BaseUnit.LeaderState.leader)
+              if (tileCultist.hasLeader != BaseUnit.LeaderState.necromancer)
               {
-                if (mana >= 4)
+                if (mana >= 40)
                 {
-                    DeltaMana(-4);
+                    DeltaMana(-40);
                 }
                 else
                 {
