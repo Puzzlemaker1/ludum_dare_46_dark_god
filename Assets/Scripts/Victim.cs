@@ -33,7 +33,7 @@ public class Victim : BaseUnit
                 //Dunno?
             }
             Cultist cultist = tile.GetComponentInChildren<Cultist>();
-            if(cultist != null && (cultist.hasLeader == LeaderState.leader))
+            if(cultist != null && (cultist.hasLeader == Cultist.LeaderState.leader))
             {
                 dir = cultist.leaderDir;
             }
@@ -47,7 +47,7 @@ public class Victim : BaseUnit
                 //don't bother checking closest...
                 for(int i = 0; i < neighborCultists.Count; i++)
                 {
-                    if(neighborCultists[i].Item1.hasLeader == LeaderState.leader)
+                    if(neighborCultists[i].Item1.hasLeader == Cultist.LeaderState.leader)
                     {
                         dir = neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord;
                         MoveUnit(dir);

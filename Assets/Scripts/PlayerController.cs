@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
             if(tileCultist)
             {
-                if (tileCultist.hasLeader == BaseUnit.LeaderState.none)
+                if (tileCultist.hasLeader == Cultist.LeaderState.none)
                 {
                     if (mana >= 20)
                     {
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
           Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
           if(tileCultist)
           {
-              if (tileCultist.hasLeader != BaseUnit.LeaderState.necromancer)
+              if (tileCultist.hasLeader != Cultist.LeaderState.necromancer)
               {
                 if (mana >= 40)
                 {
