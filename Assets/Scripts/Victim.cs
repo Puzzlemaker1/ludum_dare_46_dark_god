@@ -38,7 +38,7 @@ public class Victim : BaseUnit
                 //Dunno?
             }
             Cultist cultist = tile.GetComponentInChildren<Cultist>();
-            if(cultist != null && cultist.hasLeader)
+            if(cultist != null && (cultist.hasLeader != LeaderState.none))
             {
                 dir = cultist.leaderDir;
             }
@@ -51,7 +51,7 @@ public class Victim : BaseUnit
                 List<Cultist> neighborCultists = LocateGridEntity<Cultist>(1);
                 for(int i = 0; i < neighborCultists.Count; i++)
                 {
-                    if(neighborCultists[i].hasLeader)
+                    if(neighborCultists[i].hasLeader != LeaderState.none)
                     {
                         dir = neighborCultists[i].GetComponentInParent<Tile>().coord - tile.coord;
                     }

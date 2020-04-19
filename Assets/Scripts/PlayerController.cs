@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
         succubus,
         knight
     }
+
     public UserStates curUserState;
 
     public GameObject charactorBase;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public BaseUnit necromancer;
     public BaseUnit villager;
     public Victim victim;
+    public Zombie zombie;
     public BaseUnit anythingElseIForgot;
 
     public float updateTime;
@@ -137,7 +139,7 @@ public class PlayerController : MonoBehaviour
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
             if(tileCultist)
             {
-                if (!tileCultist.hasLeader)
+                if (tileCultist.hasLeader == BaseUnit.LeaderState.none)
                 {
                     if (mana >= 20)
                     {
@@ -149,9 +151,31 @@ public class PlayerController : MonoBehaviour
                         return;
                     }
                 }
-                Debug.Log("UPdating LEADER");
+                Debug.Log("Updating LEADER");
                 tileCultist.UpdateLeader();
             }
+        }
+        else if(curUserState == UserStates.necromancer)
+        {
+          Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
+          if(tileCultist)
+          {
+              if (tileCultist.hasLeader == BaseUnit.LeaderState.leader)
+              {
+                if (mana >= 4)
+                {
+                    DeltaMana(-4);
+                }
+                else
+                {
+                    //Not enough mana thing here?
+                    return;
+                }
+                Debug.Log("Updating NECROMANCER");
+                tileCultist.UpdateNecromancer();
+              }
+          }
+        }
             else
             {
                 //Auto add cultist?  I think no, but maybe?
@@ -160,13 +184,13 @@ public class PlayerController : MonoBehaviour
                 //TileClicked(tile);
                 //curUserState = UserStates.leader;
             }
-        }
+
     }
 
     public void Spell1Clicked()
     {
         curUserState = UserStates.cultist;
-        
+
     }
     public void Spell2Clicked()
     {

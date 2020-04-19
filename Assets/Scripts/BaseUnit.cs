@@ -15,6 +15,12 @@ public class BaseUnit : MonoBehaviour
     public Camera SoundController;
     public AudioClip clip;
     public float maxMove = 1;
+    public enum LeaderState
+    {
+        leader,
+        necromancer,
+        none
+    }
 
     public void InitializeUnit(BaseUnit settings)
     {
@@ -196,7 +202,7 @@ public class BaseUnit : MonoBehaviour
         this.health += healthDelta;
         //More particles is handled in update, on purpose to allow for a slight delay between particles.
     }
-    public void LoseHealth(int healthDelta)
+    public virtual void LoseHealth(int healthDelta)
     {
         this.health -= healthDelta;
         if (deathFX != null)
