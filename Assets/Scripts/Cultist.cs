@@ -21,6 +21,7 @@ public class Cultist : BaseUnit
     public Vector2Int leaderDir = Vector2Int.up;
 
     public SpriteRenderer leaderSprite;
+    public SpriteRenderer necromancerSprite;
     private SpriteRenderer curLeaderSprite = null;
     // Start is called before the first frame update
     override protected void UnitStart()
@@ -42,8 +43,10 @@ public class Cultist : BaseUnit
     public void UpdateNecromancer()
     {
         Debug.Log("Adding Necromancer");
+        curLeaderSprite = Instantiate(necromancerSprite);
         hasLeader = LeaderState.necromancer;
-
+        curLeaderSprite.transform.position = this.transform.position;
+        curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
     }
     public void UpdateLeader()
     {

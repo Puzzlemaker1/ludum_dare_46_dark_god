@@ -47,17 +47,21 @@ MonoBehaviour:
   sprite1: {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
   sprite2: {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
   health: 1
+  maxHealth: 5
   deathFX: {fileID: 108341686607824354, guid: 3b53a986108a1f34cb16ef672d7fffc8, type: 3}
   SoundController: {fileID: 0}
   clip: {fileID: 8300000, guid: 4f775d4f15e56d74980c5dcb6226fedd, type: 3}
+  maxMove: 1
   ticksTillSacrifice: 10
   leftLeader: {fileID: 21300000, guid: 52d87afff3dac5944a4fa0346674d56e, type: 3}
   rightLeader: {fileID: 21300000, guid: 589d3148d295e2a4ba4cc6d1a40ee389, type: 3}
   upLeader: {fileID: 21300000, guid: f8a350fca46ed8744aba8d3d72b9f37d, type: 3}
   downLeader: {fileID: 21300000, guid: ab50b15074e06c840b898be2935372ed, type: 3}
-  hasLeader: 0
+  hasLeader: 2
   leaderDir: {x: 0, y: 1}
   leaderSprite: {fileID: 4604236202402023251, guid: 129cb55595b88bd44b759e9cdcf81f72,
+    type: 3}
+  necromancerSprite: {fileID: 4604236202402023251, guid: fa4e9b1e7a7be4e4585c02c5a9c44ba7,
     type: 3}
 --- !u!82 &204659202655210623
 AudioSource:
