@@ -27,6 +27,14 @@ public class Victim : BaseUnit
         {
             //Move randomly
             Tile tile = GetComponentInParent<Tile>();
+            if(tile is SacrificialChamber)
+            {
+                //Sacrifice yourself!
+            }
+            else if(tile is Church)
+            {
+                //Dunno?
+            }
             Cultist cultist = tile.GetComponentInChildren<Cultist>();
             if(cultist != null && cultist.hasLeader)
             {
