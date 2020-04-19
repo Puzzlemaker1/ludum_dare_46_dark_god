@@ -21,12 +21,7 @@ public class BaseUnit : MonoBehaviour
     protected Tile hometile;
 
     private float timeSinceUpdate;
-    public enum LeaderState
-    {
-        leader,
-        necromancer,
-        none
-    }
+
 
     public void InitializeUnit(BaseUnit settings)
     {
