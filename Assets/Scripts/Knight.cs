@@ -29,12 +29,23 @@ public class Knight : BaseUnit
         Tile tile = GetComponentInParent<Tile>();
         Cultist cultist = tile.GetComponentInChildren<Cultist>();
 
-        if(cultist != null)
+        if (cultist != null)
         {
             Debug.Log("MORTAL COMMBAAAAT");
             //MORTAL COMBAAAAT
             cultist.LoseHealth(1);
             LoseHealth(1);
         }
+        else
+        {
+            Victim victim = tile.GetComponentInChildren<Victim>();
+            //Free the victims from their oppressors!
+            if(victim != null)
+            {
+                victim.LoseHealth(1);
+            }
+            
+        }
+        
     }
 }

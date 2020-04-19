@@ -6,6 +6,7 @@ public class Victim : BaseUnit
 {
     public int ticksTillMove;
     private int moveTimer;
+    private Vector2Int dir;
 
     public Sprite[] types = new Sprite[6];
     // Start is called before the first frame update
@@ -29,7 +30,11 @@ public class Victim : BaseUnit
             Cultist cultist = tile.GetComponentInChildren<Cultist>();
             if(cultist != null && cultist.hasLeader)
             {
-                MoveUnit(cultist.leaderDir);
+                dir = cultist.leaderDir;
+            }
+            if(dir.magnitude != 0)
+            {
+                MoveUnit(dir);
             }
 
             moveTimer = 0;
