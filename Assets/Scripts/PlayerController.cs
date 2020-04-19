@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public BaseUnit anythingElseIForgot;
     public Succubus succubus;
 
-    public float updateTime;
+    public float updateTime = 1;
 
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     public MainMenu VolumeControl;
 
+
     public Text manaText;
     public Slider manaSlider;
     public int mana;
@@ -62,16 +63,30 @@ public class PlayerController : MonoBehaviour
     public Slider lifeSlider;
     public int life;
     public int maxLife;
+
+    private float timeSinceUpdate;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        lifeSlider.maxValue = maxLife;
+        manaSlider.maxValue = maxMana;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+      timeSinceUpdate += Time.deltaTime;
+      if (timeSinceUpdate > updateTime)
+      {
+          timeSinceUpdate = 0.0f;
+
+          WorldUpdate();
+      }
+
         Vector3 moveVec = new Vector3();
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
@@ -109,6 +124,18 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }*/
+    }
+    private void WorldUpdate()
+    {
+      SetLife(life-1);
+      if (life <= 0 )
+      {
+        //gameover
+      }
+      if (life >= 1000 )
+      {
+        //gameover win!
+      }
     }
 
     public void TileClicked(Tile tile)
@@ -244,13 +271,13 @@ public class PlayerController : MonoBehaviour
         if (mana + manaDelta <= maxMana)
         {
           SetMana(mana + manaDelta);
-          SetLife(life + 5);
+          SetLife(life + 1);
         }
         else
         {
            maxMana = maxMana + 1;
            SetMana(maxMana);
-           SetLife(life + 15);
+           SetLife(life + 3);
         }
     }
 
