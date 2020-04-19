@@ -108,15 +108,8 @@ public class PlayerController : MonoBehaviour
                 //Not enough mana thing here?
                 return;
             }
-            Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
-            if (tileCultist != null)
-            {
-                tileCultist.health += 1;
-            }
-            else
-            {
-                tileCultist = tile.CreateUnit<Cultist>(cultist);
-            }
+
+            Cultist tileCultist = tile.CreateOrBoostUnit<Cultist>(cultist);
 
         }
         else if (curUserState == UserStates.knight)
