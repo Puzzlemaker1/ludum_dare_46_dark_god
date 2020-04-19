@@ -85,10 +85,9 @@ public class BaseUnit : MonoBehaviour
         Tile tile = this.GetComponentInParent<Tile>();
         GridManager grid = tile.GetComponentInParent<GridManager>();
         Vector2Int newCoord = tile.coord + dir;
-        if (newCoord.x < 0 || newCoord.y < 0 || newCoord.x > grid.size.x || newCoord.y > grid.size.y)
+        if (newCoord.x < 0 || newCoord.y < 0 || newCoord.x >= grid.size.x || newCoord.y >= grid.size.y)
         {
-            //Invalid move!
-            Debug.Log("Invalid Move!");
+            //Invalid Move!
             //Should we return a false?
             return;
         }
