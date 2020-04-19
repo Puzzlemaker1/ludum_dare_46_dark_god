@@ -160,12 +160,10 @@ public class PlayerController : MonoBehaviour
         if (curUserState == UserStates.cultist)
         {
             curUserState = UserStates.knight;
-            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Cultist");
         }
         else if (curUserState == UserStates.knight)
         {
             curUserState = UserStates.cultist;
-            SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Knight");
         }
     }
 
