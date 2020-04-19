@@ -17,13 +17,60 @@ public class MainMenu : MonoBehaviour {
 	public List<AudioSource> SEaudioList;
 	public AudioSource[] AMBaudioList;
 	public AudioSource[] MUSaudioList;
+	public GameObject[] pauseObjects;
+	public GameObject[] unpauseObjects;
 
 	void Start ()
   {
-
+		Time.timeScale = 1;
+		// pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+		hidePaused();
 	}
 
+	// Update is called once per frame
+	void Update () {
 
+		//uses the p button to pause and unpause the game
+		if(Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+		{
+			pauseControl();
+		}
+	}
+
+	//shows objects with ShowOnPause tag
+	public void showPaused(){
+		Time.timeScale = 0;
+		foreach(GameObject g in pauseObjects)
+		{
+			g.SetActive(true);
+		}
+		foreach(GameObject g in unpauseObjects)
+		{
+			g.SetActive(false);
+		}
+	}
+
+	//hides objects with ShowOnPause tag
+	public void hidePaused(){
+		Time.timeScale = 1;
+		foreach(GameObject g in pauseObjects)
+		{
+			g.SetActive(false);
+		}
+		foreach(GameObject g in unpauseObjects)
+		{
+			g.SetActive(true);
+		}
+	}
+
+	public void pauseControl(){
+		if(Time.timeScale == 1)
+		{
+			showPaused();
+		} else if (Time.timeScale == 0){
+			hidePaused();
+		}
+	}
 
 	public void MMUpdateSound ()
 	{
