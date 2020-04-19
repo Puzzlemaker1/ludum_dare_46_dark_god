@@ -21,20 +21,21 @@ public class SpawningTile <T>  : Tile
     public override void TileUpdate()
     {
         //WEee
-        
-        if (spawnedUnit == null)
+        spawnTimer++;
+        if (spawnTimer > (initialSpawn ? initialSpawnTicks : ticksTillRespawn) + randomDelay)
         {
-            spawnTimer++;
-            if (spawnTimer > (initialSpawn ? initialSpawnTicks : ticksTillRespawn) + randomDelay)
+            spawnTimer = 0;
+            if (initialSpawn)
             {
                 spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
-                spawnTimer = 0;
                 initialSpawn = false;
             }
+            else if(spawnedUnit.GetComponentInParent<Tile>().coord == this.coord)
+            {
+                spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
+            }
         }
-        else
-        { 
-        }
+
         base.TileUpdate();
     }
 

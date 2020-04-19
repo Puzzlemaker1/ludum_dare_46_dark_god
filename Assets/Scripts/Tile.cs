@@ -8,7 +8,6 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     public float updateTime = 1;
     public bool blocking;
     public Vector2Int coord;
-    public float sacrificeMultiplier;
 
     private float timeSinceUpdate;
 

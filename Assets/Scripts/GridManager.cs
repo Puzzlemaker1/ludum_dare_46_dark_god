@@ -37,13 +37,16 @@ public class GridManager : MonoBehaviour
         ArrayList[] towns = new ArrayList[numTowns];
         for (int startCount = 0; startCount < startingAreaSize; startCount++)
         {
-            if(Random.Range(0, 3) == 0)
+            if(Random.Range(0, 4) == 0)
             {
                 startingArea.Add(Instantiate(wildernessPrefab));
             }
             else
             {
-                startingArea.Add(Instantiate(housePrefab));
+                House newHouse = Instantiate(housePrefab);
+                //One house in the wilderness
+                newHouse.maxPopulation = newHouse.popPerHouse;
+                startingArea.Add(newHouse);
             }
         }
 
@@ -56,7 +59,13 @@ public class GridManager : MonoBehaviour
             {
                 for(int c = 0; c < tileTuple.Item1; c++)
                 {
-                    towns[townCount].Add(Instantiate(tileTuple.Item2));
+                    Tile newTile = Instantiate(tileTuple.Item2);
+                    if (tileTuple.Item2 is House)
+                    {
+                        //Randomize population slightly.
+                        ((House)newTile).maxPopulation -= Random.Range(0, 5);
+                    }
+                    towns[townCount].Add(newTile);
                 }
             }
             FisherYatesShuffle(towns[townCount]);
@@ -83,7 +92,12 @@ public class GridManager : MonoBehaviour
                 {
                     if (Random.Range(0, 3) == 0)
                     {
-                        AddTile(Instantiate(housePrefab), x, y);
+                        House newHouse = Instantiate(housePrefab);
+
+                        //Randomize population slightly.
+                        newHouse.maxPopulation = newHouse.popPerHouse;
+
+                        AddTile(newHouse, x, y);
                     }
                     else
                     {

@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7829941b4d5c73e4c93cef41e6666d52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ffbf41523eaaac439ec4538f78f3ae4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,6 +121,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8bbb1ace829f324e81fd81de3df6560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateTime: 1
   blocking: 0
   coord: {x: 0, y: 0}
-  ticksTillSpawn: 0
+  population: 8
+  maxPopulation: 8
+  popPerHouse: 2
+  popRecoverDelay: 100
+  maxHousesDisplayable: 4
+  houseSprite: {fileID: 7419369764670255089, guid: ce3d8ef334c255049a625e8b38d9a4f0,
+    type: 3}
+  filledHouse: {fileID: 21300000, guid: d6f77e7505e0e1f4d9afb3d8329b8e49, type: 3}
+  ruinedHouse: {fileID: 21300000, guid: 21fbdd90b3acbf64aa253a34c840521f, type: 3}
