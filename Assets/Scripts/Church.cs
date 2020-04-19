@@ -20,6 +20,7 @@ public class Church : Tile
 
     public override void TileStart()
     {
-        CreateUnit<Inquisitor>(PlayerController.Instance.inquisitor);
+        Debug.Log("CHURCH START");
+        //CreateUnit<Inquisitor>(PlayerController.Instance.inquisitor);
     }
 }

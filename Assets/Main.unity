@@ -1262,7 +1262,8 @@ MonoBehaviour:
     type: 3}
   cultist: {fileID: 6089771476811398025, guid: e56963ec605504f4695b74b57309c446, type: 3}
   knight: {fileID: -7450504419167669928, guid: d78b06e901ca3394ea8c7756695d68ea, type: 3}
-  inquisition: {fileID: 0}
+  inquisitor: {fileID: 1208472717411927010, guid: 592a3371d5406f64f82d0fdb0e63694f,
+    type: 3}
   necromancer: {fileID: 0}
   villager: {fileID: 0}
   victim: {fileID: 1114751799938583139, guid: 628a145e9ebf8314eb7f4c86914988d6, type: 3}

@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     {
         leader,
         cultist,
-        fourthSpell,
-        fifthSpell,
+        necromancer,
+        succubus,
         knight
     }
     public UserStates curUserState;
@@ -165,20 +165,20 @@ public class PlayerController : MonoBehaviour
 
     public void Spell1Clicked()
     {
-        Debug.Log("Leader mode turned on");
-        curUserState = UserStates.leader;
+        curUserState = UserStates.cultist;
+        
     }
     public void Spell2Clicked()
     {
-        curUserState = UserStates.cultist;
+        curUserState = UserStates.necromancer;
     }
     public void Spell3Clicked()
     {
-
+        curUserState = UserStates.succubus;
     }
     public void Spell4Clicked()
     {
-
+        curUserState = UserStates.leader;
     }
     public void Spell5Clicked()
     {
@@ -186,14 +186,7 @@ public class PlayerController : MonoBehaviour
     }
     public void knightdebugClicked()
     {
-        if (curUserState == UserStates.cultist)
-        {
-            curUserState = UserStates.knight;
-        }
-        else if (curUserState == UserStates.knight)
-        {
-            curUserState = UserStates.cultist;
-        }
+        curUserState = UserStates.knight;
     }
 
     public void DeltaMana(int manaDelta)
