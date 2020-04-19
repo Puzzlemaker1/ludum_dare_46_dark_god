@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Cultist : BaseUnit
 {
+
     public int ticksTillSacrifice;
     private int sacrificeTimer;
     public Sprite leftLeader;
@@ -12,7 +13,7 @@ public class Cultist : BaseUnit
     public Sprite downLeader;
 
     //Make these getters and setters instead of this
-    public bool hasLeader = false;
+    public LeaderState hasLeader = LeaderState.none;
     public Vector2Int leaderDir = Vector2Int.up;
 
     public SpriteRenderer leaderSprite;
@@ -33,19 +34,24 @@ public class Cultist : BaseUnit
             sacrificeTimer = 0;
             Tile parentTile = this.GetComponentInParent<Tile>();
             if (parentTile == null)
-            { 
+            {
                 Debug.Log("ERROR");
             }
             parentTile.CreateUnit<Victim>(PlayerController.Instance.victim);
         }
     }
+    public void UpdateNecromancer()
+    {
+        Debug.Log("Adding Necromancer");
+        hasLeader = LeaderState.necromancer;
 
+    }
     public void UpdateLeader()
     {
-        if(hasLeader != true)
+        if(hasLeader == LeaderState.none)
         {
             Debug.Log("Making new leader!");
-            hasLeader = true;
+            hasLeader = LeaderState.leader;
             leaderDir = Vector2Int.up;
             //leaderSprite = upLeader;
             curLeaderSprite = Instantiate(leaderSprite);
@@ -53,7 +59,7 @@ public class Cultist : BaseUnit
             curLeaderSprite.transform.position = this.transform.position;
             curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
         }
-        else
+        else if (hasLeader != LeaderState.none)
         {
             Debug.Log("Updating Existing Leader");
             //Rotate clockwise in an infuriating fashion
@@ -88,6 +94,33 @@ public class Cultist : BaseUnit
         {
             Destroy(curLeaderSprite.gameObject);
         }
+
         base.UnitDie();
+    }
+    public override void LoseHealth(int healthDelta)
+    {
+        this.health -= healthDelta;
+        if (deathFX != null)
+        {
+           Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
+        }
+        if (clip != null)
+        {
+          SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
+        }
+        if (hasLeader == LeaderState.necromancer)
+        {
+          //spawn zombie
+          Tile parentTile = this.GetComponentInParent<Tile>();
+          if (parentTile == null)
+          {
+              Debug.Log("ERROR");
+          }
+          parentTile.CreateUnit<Zombie>(PlayerController.Instance.zombie);
+        }
+        if (this.health <= 0)
+        {
+            this.UnitDie();
+        }
     }
 }

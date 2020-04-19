@@ -20,12 +20,20 @@ public class Knight : BaseUnit
             Tile tile = GetComponentInParent<Tile>();
             GridManager grid = this.transform.root.GetComponent<GridManager>();
             Cultist cultist = tile.GetComponentInChildren<Cultist>();
+            Zombie zombie = tile.GetComponentInChildren<Zombie>();
             Victim victim = tile.GetComponentInChildren<Victim>();
             if (cultist != null)
             {
-                Debug.Log("MORTAL COMMBAAAAT");
+                Debug.Log("MORTAL COMMBAAAAT C");
                 //MORTAL COMBAAAAT
                 cultist.LoseHealth(1);
+                LoseHealth(1);
+            }
+            else if (zombie != null)
+            {
+                Debug.Log("MORTAL COMMBAAAAT Z");
+                //MORTAL COMBAAAAT
+                zombie.LoseHealth(1);
                 LoseHealth(1);
             }
             else if (victim != null)
