@@ -76,7 +76,7 @@ public class BaseUnit : MonoBehaviour
         }
     }
 
-    public List<T> LocateEntity<T>(int distance)
+    public List<T> LocateGridEntity<T>(int distance)
     {
         List<T> entities = new List<T>();
         GridManager grid = this.transform.root.GetComponent<GridManager>();
@@ -84,18 +84,33 @@ public class BaseUnit : MonoBehaviour
         {
             for (int y = -1 * distance; y <= distance; y++)
             {
-                Vector2Int coord = new Vector2Int(x, y);
-                if (this.transform.root.GetComponent<GridManager>().IsValidTile(coord))
+                Vector2Int coord = new Vector2Int(x, y) + this.GetComponentInParent<Tile>().coord;
+                Tile tile = grid.getTile(coord);
+                if (tile != null)
                 {
-                    T entity = default(T);
+                    Debug.Log("Checking tile " + coord);
                     Type entityType = typeof(T);
-                    if(entityType == typeof(Tile))
+                    T entity;
+                    if(entityType.IsSubclassOf(typeof(Tile)))
                     {
-                        entities.Add(grid.getTile(coord).GetComponent<T>());
+                        Debug.Log("Is a tile");
+                        entity = tile.GetComponent<T>();
                     }
-                    else if (entityType == typeof(BaseUnit))
+                    else if (entityType.IsSubclassOf(typeof(BaseUnit)))
                     {
-                        entities.Add(grid.getTile(coord).GetComponent<T>());
+                        
+                        entity = tile.GetComponentInChildren<T>();
+                        Debug.Log("Is a unit: " + entity);
+                    }
+                    else
+                    {
+                        //Hmm
+                        Debug.LogError("Non valid location called!");
+                        return entities;
+                    }
+                    if(entity != null)
+                    {
+                        entities.Add(entity);
                     }
                 }
             }

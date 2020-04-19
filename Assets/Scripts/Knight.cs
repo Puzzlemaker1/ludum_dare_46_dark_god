@@ -16,36 +16,47 @@ public class Knight : BaseUnit
     protected override void UnitUpdate()
     {
         //Do your stuff here
+        //Have a delay before every action
         moveTimer++;
         if (moveTimer > ticksTillMove)
         {
-            //Move randomly
-            Vector2Int moveVec = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
-            MoveUnit(moveVec);
-            moveTimer = 0;
-        }
-
-        //Now check for combat
-        Tile tile = GetComponentInParent<Tile>();
-        Cultist cultist = tile.GetComponentInChildren<Cultist>();
-
-        if (cultist != null)
-        {
-            Debug.Log("MORTAL COMMBAAAAT");
-            //MORTAL COMBAAAAT
-            cultist.LoseHealth(1);
-            LoseHealth(1);
-        }
-        else
-        {
+            //First combat (part of move timer?)
+            Tile tile = GetComponentInParent<Tile>();
+            Cultist cultist = tile.GetComponentInChildren<Cultist>();
             Victim victim = tile.GetComponentInChildren<Victim>();
-            //Free the victims from their oppressors!
-            if(victim != null)
+            if (cultist != null)
             {
+                Debug.Log("MORTAL COMMBAAAAT");
+                //MORTAL COMBAAAAT
+                cultist.LoseHealth(1);
+                LoseHealth(1);
+            }
+            else if (victim != null)
+            {
+                //Free the victims from their oppressors!
                 victim.LoseHealth(1);
             }
+            else
+            {
+                //No combat or victims to save.
+                List<Cultist> cultists = LocateGridEntity<Cultist>(1);
+                if (cultists.Count > 0)
+                {
+                    //WE FOUND A CULTIST, FUCK EM UP
+                    //Grab one randomly and head towards it!
+                    Debug.Log("FOUND A CULTIST, GET EM");
+                    MoveUnit(cultists[Random.Range(0, cultists.Count)].GetComponentInParent<Tile>().coord - tile.coord);
+                }
+                else if (!(tile is Castle))
+                {
+                    //We arn't on a castle, we should wander.
 
+                    //Move randomly
+                    Vector2Int moveVec = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
+                    MoveUnit(moveVec);
+                }
+            }
+            moveTimer = 0;
         }
-
     }
 }
