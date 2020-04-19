@@ -9,11 +9,11 @@ public class PlayerController : MonoBehaviour
 
     public enum UserStates
     {
+        leader,
         cultist,
-        knight,
-        thirdSpell,
         fourthSpell,
-        fifthSpell
+        fifthSpell,
+        knight
     }
     public UserStates curUserState;
 
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     public void TileClicked(Tile tile)
     {
         //Depending on your mode it will do different stuff.
-        if(curUserState == UserStates.cultist)
+        if (curUserState == UserStates.cultist)
         {
             //Okay!
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else if(curUserState == UserStates.knight)
+        else if (curUserState == UserStates.knight)
         {
             Knight tileKnight = tile.GetComponentInChildren<Knight>();
             if (tileKnight != null)
@@ -113,41 +113,59 @@ public class PlayerController : MonoBehaviour
                 tileKnight = tile.CreateUnit<Knight>(knight);
             }
         }
+        else if(curUserState == UserStates.leader)
+        {
+            Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
+            if(tileCultist)
+            {
+                Debug.Log("UPdating LEADER");
+                tileCultist.UpdateLeader();
+            }
+            else
+            {
+                //Auto add cultist?  I think no, but maybe?
+
+                //curUserState = UserStates.cultist;
+                //TileClicked(tile);
+                //curUserState = UserStates.leader;
+            }
+        }
     }
 
-        public void Spell1Clicked()
-        {
+    public void Spell1Clicked()
+    {
+        Debug.Log("Leader mode turned on");
+        curUserState = UserStates.leader;
+    }
+    public void Spell2Clicked()
+    {
+        curUserState = UserStates.cultist;
+    }
+    public void Spell3Clicked()
+    {
 
-        }
-        public void Spell2Clicked()
-        {
+    }
+    public void Spell4Clicked()
+    {
 
-        }
-        public void Spell3Clicked()
-        {
+    }
+    public void Spell5Clicked()
+    {
 
-        }
-        public void Spell4Clicked()
+    }
+    public void knightdebugClicked()
+    {
+        if (curUserState == UserStates.cultist)
         {
-
-        }
-        public void Spell5Clicked()
-        {
-
-        }
-        public void knightdebugClicked()
-        {
-          if(curUserState == UserStates.cultist)
-          {
             curUserState = UserStates.knight;
             SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Cultist");
-          }
-          else if(curUserState == UserStates.knight)
-          {
+        }
+        else if (curUserState == UserStates.knight)
+        {
             curUserState = UserStates.cultist;
             SpellButton2Image.sprite = Resources.Load<Sprite>("../Sprites/Spell2Knight");
-          }
         }
+    }
 
 
 }

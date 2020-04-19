@@ -122,8 +122,4 @@ public class BaseUnit : MonoBehaviour
         //Other classes should inherit from this
         Debug.Log("Update");
     }
-
-
-
-    
 }
