@@ -27,9 +27,13 @@ public class Victim : BaseUnit
         {
             //Move randomly
             Tile tile = GetComponentInParent<Tile>();
+            Debug.Log(tile.GetType());
             if(tile is SacrificialChamber)
             {
                 //Sacrifice yourself!
+                Debug.Log("SacrificialCHamber");
+                PlayerController.Instance.DeltaMana(10);
+                UnitDie();
             }
             else if(tile is Church)
             {

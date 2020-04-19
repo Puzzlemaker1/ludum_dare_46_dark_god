@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7167810224570155562}
   - component: {fileID: 7309337460710377630}
   - component: {fileID: -6045214837736493808}
-  - component: {fileID: -5697338699453513951}
+  - component: {fileID: 7627825712410567282}
   m_Layer: 0
   m_Name: SacrificePrefab
   m_TagString: Untagged
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-5697338699453513951
+--- !u!114 &7627825712410567282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7167810224570155540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8bbb1ace829f324e81fd81de3df6560, type: 3}
+  m_Script: {fileID: 11500000, guid: 13da211aba6ba4447be7aed3c7e3f582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blocking: 0

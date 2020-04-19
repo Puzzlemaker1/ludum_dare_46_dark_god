@@ -77,7 +77,7 @@ public class BaseUnit : MonoBehaviour
         if (dir.magnitude > 1)
         {
             //Extra move?
-            Debug.LogError("Too much movement?");
+            //Debug.LogError("Too much movement?");
         }
         Tile tile = this.GetComponentInParent<Tile>();
         GridManager grid = tile.GetComponentInParent<GridManager>();

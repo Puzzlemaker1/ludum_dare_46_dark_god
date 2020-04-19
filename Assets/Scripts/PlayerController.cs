@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
 
+
     public enum UserStates
     {
         leader,
@@ -37,6 +38,11 @@ public class PlayerController : MonoBehaviour
     public Image SpellButton4Image;
     public Image SpellButton5Image;
     public MainMenu VolumeControl;
+
+    public Text manaText;
+    public Slider manaSlider;
+
+    public int mana;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +98,16 @@ public class PlayerController : MonoBehaviour
         if (curUserState == UserStates.cultist)
         {
             //Okay!
+
+            if (mana >= 10)
+            {
+                DeltaMana(-10);
+            }
+            else
+            {
+                //Not enough mana thing here?
+                return;
+            }
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
             if (tileCultist != null)
             {
@@ -117,9 +133,22 @@ public class PlayerController : MonoBehaviour
         }
         else if(curUserState == UserStates.leader)
         {
+
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
             if(tileCultist)
             {
+                if (!tileCultist.hasLeader)
+                {
+                    if (mana >= 20)
+                    {
+                        DeltaMana(-20);
+                    }
+                    else
+                    {
+                        //Not enough mana thing here?
+                        return;
+                    }
+                }
                 Debug.Log("UPdating LEADER");
                 tileCultist.UpdateLeader();
             }
@@ -167,5 +196,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void DeltaMana(int manaDelta)
+    {
+        SetMana(mana + manaDelta);
+    }
+
+    public void SetMana(int newMana)
+    {
+        mana = newMana;
+        manaText.text = mana + "/100";
+        manaSlider.value = mana;
+    }
+
+    public int GetMana()
+    {
+        return mana;
+    }
 
 }
