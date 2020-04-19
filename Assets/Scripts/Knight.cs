@@ -49,9 +49,16 @@ public class Knight : BaseUnit
             else
             {
                 //No combat or victims to save.
-                //Check if we have an alert
-                if (grid.IsValidTile(enemyLocation))
+                //First:  Think with your pants.
+                Succubus foundSuccubus = LocateClosestGridEntity<Succubus>(2);
+                if(foundSuccubus != null)
                 {
+                    //Hey there cute stuff
+                    MoveUnit(foundSuccubus.GetComponentInParent<Tile>().coord - tile.coord);
+                }
+                else if (grid.IsValidTile(enemyLocation))
+                {
+                    //Check if we have an alert
                     if (enemyLocation == tile.coord)
                     {
                         //Set it to null, we got to the point.
@@ -64,13 +71,12 @@ public class Knight : BaseUnit
                 }
                 else
                 {
-                    List<Cultist> cultists = LocateGridEntity<Cultist>(1);
-                    if (cultists.Count > 0)
+                    Cultist foundCultist = LocateClosestGridEntity<Cultist>(1);
+                    if (foundCultist != null)
                     {
                         //WE FOUND A CULTIST, FUCK EM UP
-                        //Grab one randomly and head towards it!
                         Debug.Log("FOUND A CULTIST, GET EM");
-                        MoveUnit(cultists[Random.Range(0, cultists.Count)].GetComponentInParent<Tile>().coord - tile.coord);
+                        MoveUnit(foundCultist.GetComponentInParent<Tile>().coord - tile.coord);
                     }
                     else if (!(tile is Castle))
                     {

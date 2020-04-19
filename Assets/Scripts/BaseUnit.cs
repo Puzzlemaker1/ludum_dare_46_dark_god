@@ -11,6 +11,7 @@ public class BaseUnit : MonoBehaviour
     public Sprite sprite1;
     public Sprite sprite2;
     public int health = 1;
+    public int maxHealth = 5;
     public GameObject deathFX;
     public Camera SoundController;
     public AudioClip clip;
@@ -36,7 +37,6 @@ public class BaseUnit : MonoBehaviour
         {
             field.SetValue(this, field.GetValue(settings));
         }
-        Debug.Log("Unit initialized");
 
         SoundController = FindObjectOfType<Camera>();
     }
@@ -44,7 +44,6 @@ public class BaseUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Unit started");
         //Let any children initlialization happen first
         UnitStart();
 
@@ -83,9 +82,9 @@ public class BaseUnit : MonoBehaviour
         }
     }
 
-    public List<T> LocateGridEntity<T>(int distance)
+    public List<Tuple<T, float>> LocateGridEntity<T>(int distance)
     {
-        List<T> entities = new List<T>();
+        List<Tuple<T, float>> entities = new List<Tuple<T, float>>();
         GridManager grid = this.transform.root.GetComponent<GridManager>();
         for (int x = -1 * distance; x <= distance; x++)
         {
@@ -113,7 +112,8 @@ public class BaseUnit : MonoBehaviour
                     }
                     if(entity != null)
                     {
-                        entities.Add(entity);
+                        float entityDistance = (tile.coord - this.GetComponentInParent<Tile>().coord).magnitude;
+                        entities.Add(new Tuple<T, float>(entity, entityDistance));
                     }
                 }
             }
@@ -121,32 +121,24 @@ public class BaseUnit : MonoBehaviour
         return entities;
     }
 
+    public T LocateClosestGridEntity<T>()
+    {
+        //HACKY HACK
+        return LocateClosestGridEntity<T>(100);
+    }
+
     public T LocateClosestGridEntity<T>(int distance)
     {
-        List<T> entities = LocateGridEntity<T>(distance);
+        List<Tuple<T, float>> entities = LocateGridEntity<T>(distance);
         T closest = default(T);
         float minMag = Mathf.Infinity;
         for(int i = 0; i < entities.Count; i++)
         {
             Type entityType = typeof(T);
-            float mag = Mathf.Infinity;
-            if (entityType.IsSubclassOf(typeof(Tile)))
+            if(entities[i].Item2 < minMag)
             {
-                mag = (entities[i] as Tile).coord.magnitude;
-            }
-            else if (entityType.IsSubclassOf(typeof(BaseUnit)))
-            {
-
-                mag = (entities[i] as BaseUnit).GetComponentInParent<Tile>().coord.magnitude;
-            }
-            else
-            {
-                Debug.LogError("Bad LocateClosestGridEntity call!");
-            }
-            if(mag < minMag)
-            {
-                minMag = mag;
-                closest = entities[i];
+                minMag = entities[i].Item2;
+                closest = entities[i].Item1;
             }
         }
         if(minMag != Mathf.Infinity)
@@ -158,16 +150,39 @@ public class BaseUnit : MonoBehaviour
 
     public void MoveUnit(Vector2Int dir)
     {
-        if (dir.magnitude > maxMove)
+        if(dir.magnitude == 0)
         {
-            //Cap it!
-            Vector2Int newDir = dir / 2;
-            if(newDir.magnitude == 0)
-            {
-                newDir.x = dir.x;
-            }
-            dir = newDir;
+            //Welp
+            Debug.Log("Move with a mag of 0");
+            return;
         }
+        Vector2 newDir = new Vector2();
+        Vector2Int newIntDir = new Vector2Int();
+        //Set a floating point vector to equal the movement direction
+        newDir.Set(dir.x, dir.y);
+        //Reduce the size of the vector to the max move speed.
+        newDir *= (maxMove / newDir.magnitude);
+        //Round it back to an integer
+        newIntDir.Set((int)Math.Floor(newDir.x), (int)Math.Floor(newDir.y));
+        if (newIntDir.magnitude == 0)
+        {
+            //Rounded down to nothing!
+            if (dir.x != 0)
+            {
+                newIntDir.x = Math.Sign(dir.x);
+            }
+            else
+            {
+                newIntDir.y = Math.Sign(dir.y);
+            }
+        }
+        dir = newIntDir;
+
+        if(dir.magnitude == 0)
+        {
+            Debug.LogError("AHHHH");
+        }
+
         Tile tile = this.GetComponentInParent<Tile>();
         GridManager grid = tile.GetComponentInParent<GridManager>();
         Vector2Int newCoord = tile.coord + dir;
@@ -200,6 +215,10 @@ public class BaseUnit : MonoBehaviour
     public void GainHealth(int healthDelta)
     {
         this.health += healthDelta;
+        if(this.health > maxHealth)
+        {
+            this.health = maxHealth;
+        }
         //More particles is handled in update, on purpose to allow for a slight delay between particles.
     }
     public virtual void LoseHealth(int healthDelta)

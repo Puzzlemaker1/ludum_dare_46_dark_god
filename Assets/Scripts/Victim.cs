@@ -12,7 +12,6 @@ public class Victim : BaseUnit
     // Start is called before the first frame update
     override protected void UnitStart()
     {
-        Debug.Log("Victim start");
         int type = Random.Range(0, 2);
         this.sprite1 = types[type*2];
         this.sprite2 = types[type*2 + 1];
@@ -29,7 +28,6 @@ public class Victim : BaseUnit
             if(tile is SacrificialChamber)
             {
                 //Sacrifice yourself!
-                Debug.Log("SacrificialCHamber");
                 PlayerController.Instance.DeltaMana(10);
                 UnitDie();
             }
@@ -48,15 +46,19 @@ public class Victim : BaseUnit
             }
             else
             {
-                List<Cultist> neighborCultists = LocateGridEntity<Cultist>(1);
+                List<System.Tuple<Cultist, float>> neighborCultists = LocateGridEntity<Cultist>(1);
+                //don't bother checking closest...
                 for(int i = 0; i < neighborCultists.Count; i++)
                 {
-                    if(neighborCultists[i].hasLeader != LeaderState.none)
+                    if(neighborCultists[i].Item1.hasLeader != LeaderState.none)
                     {
-                        dir = neighborCultists[i].GetComponentInParent<Tile>().coord - tile.coord;
+                        dir = neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord;
+                        MoveUnit(dir);
+                        moveTimer = 0;
+                        return;
                     }
                 }
-                MoveUnit(dir);
+
             }
 
             moveTimer = 0;

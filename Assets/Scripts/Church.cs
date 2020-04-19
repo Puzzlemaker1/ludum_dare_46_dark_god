@@ -6,21 +6,20 @@ public class Church : Tile
 {
     public int ticksTillSpawn;
     private int spawnTimer;
+    private bool spawnedInquisitor;
     // Start is called before the first frame update
     public override void TileUpdate()
     {
-        //WEee
         spawnTimer++;
-        if (spawnTimer > ticksTillSpawn)
+        if(!spawnedInquisitor && spawnTimer < ticksTillSpawn)
         {
-            //CreateUnit<Knight>(PlayerController.Instance.knight);
+            CreateUnit<Inquisitor>(PlayerController.Instance.inquisitor);
+            spawnedInquisitor = true;
         }
         base.TileUpdate();
     }
 
     public override void TileStart()
     {
-        Debug.Log("CHURCH START");
-        //CreateUnit<Inquisitor>(PlayerController.Instance.inquisitor);
     }
 }

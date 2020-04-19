@@ -9,17 +9,6 @@ public class Inquisitor : BaseUnit
     private Vector2Int enemyLocation = new Vector2Int(-1, -1);
     private Vector2Int castleLocation = new Vector2Int(-1, -1);
 
-    public Sprite[] types = new Sprite[6];
-    // Start is called before the first frame update
-    override protected void UnitStart()
-    {
-        Debug.Log("Victim start");
-        int type = Random.Range(0, 2);
-        this.sprite1 = types[type*2];
-        this.sprite2 = types[type*2 + 1];
-    }
-
-
     protected override void UnitUpdate()
     {
         //Do your stuff here
@@ -52,15 +41,17 @@ public class Inquisitor : BaseUnit
                     else
                     {
                         //Uhh?
+                        Debug.Log("Inquisitor At castle but no knights!");
                     }
                     enemyLocation.Set(-1, -1);
                     castleLocation.Set(-1, -1);
+                    return;
                 }
                 else
                 {
-                    if (grid.IsValidTile(castleLocation))
+                    if (!grid.IsValidTile(castleLocation))
                     {
-                        Castle closestCastle = LocateClosestGridEntity<Castle>(6);
+                        Castle closestCastle = LocateClosestGridEntity<Castle>();
                         if (closestCastle != default(Castle))
                         {
                             castleLocation = closestCastle.coord;

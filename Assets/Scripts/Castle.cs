@@ -13,7 +13,7 @@ public class Castle : Tile
         spawnTimer++;
         if (spawnTimer > ticksTillSpawn)
         {
-            CreateUnit<Knight>(PlayerController.Instance.knight);
+            CreateOrBoostUnit<Knight>(PlayerController.Instance.knight);
             spawnTimer = 0;
         }
         base.TileUpdate();

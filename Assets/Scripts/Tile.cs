@@ -34,8 +34,21 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         GameObject particles = Instantiate(PlayerController.Instance.charactorBase, this.transform);
         T newUnit = particles.AddComponent<T>();
         newUnit.InitializeUnit(unitSettings);
-        Debug.Log("Unit created!");
         return newUnit;
+    }
+
+    public T CreateOrBoostUnit<T>(T unitSettings) where T : BaseUnit
+    {
+        T unit = this.GetComponentInChildren<T>();
+        if(unit == null)
+        {
+            unit = CreateUnit<T>(unitSettings);
+        }
+        else
+        {
+            unit.GainHealth(1);
+        }
+        return unit;
     }
 
     public void OnPointerClick(PointerEventData data)

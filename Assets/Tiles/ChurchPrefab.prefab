@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blocking: 0
   coord: {x: 0, y: 0}
-  ticksTillSpawn: 100
+  sacrificeMultiplier: 0
+  ticksTillSpawn: 2
 --- !u!212 &7309337460710377630
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public Victim victim;
     public Zombie zombie;
     public BaseUnit anythingElseIForgot;
+    public Succubus succubus;
 
     public float updateTime;
 
@@ -110,15 +111,8 @@ public class PlayerController : MonoBehaviour
                 //Not enough mana thing here?
                 return;
             }
-            Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
-            if (tileCultist != null)
-            {
-                tileCultist.health += 1;
-            }
-            else
-            {
-                tileCultist = tile.CreateUnit<Cultist>(cultist);
-            }
+
+            Cultist tileCultist = tile.CreateOrBoostUnit<Cultist>(cultist);
 
         }
         else if (curUserState == UserStates.knight)
@@ -175,16 +169,13 @@ public class PlayerController : MonoBehaviour
                 tileCultist.UpdateNecromancer();
               }
           }
+
+
         }
-            else
-            {
-                //Auto add cultist?  I think no, but maybe?
-
-                //curUserState = UserStates.cultist;
-                //TileClicked(tile);
-                //curUserState = UserStates.leader;
-            }
-
+        else if(curUserState == UserStates.succubus)
+        {
+            Succubus tileSuccubus = tile.CreateUnit<Succubus>(succubus);
+        }
     }
 
     public void Spell1Clicked()

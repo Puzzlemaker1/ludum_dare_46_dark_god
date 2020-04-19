@@ -57,6 +57,7 @@ public class Cultist : BaseUnit
             curLeaderSprite = Instantiate(leaderSprite);
             curLeaderSprite.sprite = upLeader;
             curLeaderSprite.transform.position = this.transform.position;
+            curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
         }
         else if (hasLeader != LeaderState.none)
         {
