@@ -9,7 +9,7 @@ public class Knight : BaseUnit
     private int moveTimer;
     override protected void UnitStart()
     {
-        
+
     }
 
 
@@ -44,8 +44,8 @@ public class Knight : BaseUnit
             {
                 victim.LoseHealth(1);
             }
-            
+
         }
-        
+
     }
 }
