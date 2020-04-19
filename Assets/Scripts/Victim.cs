@@ -48,6 +48,18 @@ public class Victim : BaseUnit
             {
                 MoveUnit(dir);
             }
+            else
+            {
+                List<Cultist> neighborCultists = LocateGridEntity<Cultist>(1);
+                for(int i = 0; i < neighborCultists.Count; i++)
+                {
+                    if(neighborCultists[i].hasLeader)
+                    {
+                        dir = neighborCultists[i].GetComponentInParent<Tile>().coord - this.GetComponentInParent<Tile>().coord;
+                    }
+                }
+                MoveUnit(dir);
+            }
 
             moveTimer = 0;
         }

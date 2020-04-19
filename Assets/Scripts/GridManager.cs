@@ -67,6 +67,10 @@ public class GridManager : MonoBehaviour
 
     public Tile getTile(Vector2Int tileCoord)
     {
+        if(!IsValidTile(tileCoord))
+        {
+            return null;
+        }
         return tiles[tileCoord.x, tileCoord.y];
     }
 
