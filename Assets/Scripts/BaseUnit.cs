@@ -113,7 +113,7 @@ public class BaseUnit : MonoBehaviour
         Debug.Log("Health lost");
         this.health -= healthDelta;
         Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
-        this.GetComponent<AudioSource>().volume = SoundController.volume;
+        // this.GetComponent<AudioSource>().volume = SoundController.volume;
         this.GetComponent<AudioSource>().Play();
         if (this.health <= 0)
         {
