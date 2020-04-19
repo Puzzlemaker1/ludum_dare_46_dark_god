@@ -6,7 +6,7 @@ public class GridManager : MonoBehaviour
 {
     public Vector2Int size;
     public float xScale, yScale;
-    public Tile prefab;
+    public Tile[] prefab;
 
     Tile[,] tiles;
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class GridManager : MonoBehaviour
         {
             for(int y = 0; y < size.y; y++)
             {
-                clone = Instantiate(prefab, new Vector3(xScale * x, yScale * y), Quaternion.identity);
+                clone = Instantiate(prefab[Random.Range(0, prefab.Length)], new Vector3(xScale * x, yScale * y), Quaternion.identity);
                 clone.coord = new Vector2Int(x, y);
                 clone.transform.parent = this.transform;
                 tiles[x, y] = clone;

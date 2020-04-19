@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     }
     public UserStates curUserState;
 
-
+    public GameObject charactorBase;
     public Cultist cultist;
     public Knight knight;
     public BaseUnit inquisition;

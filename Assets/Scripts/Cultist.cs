@@ -16,7 +16,7 @@ public class Cultist : BaseUnit
     public Vector2Int leaderDir = Vector2Int.up;
 
     public SpriteRenderer leaderSprite;
-    private SpriteRenderer curLeaderSprite;
+    private SpriteRenderer curLeaderSprite = null;
     // Start is called before the first frame update
     override protected void UnitStart()
     {
@@ -83,7 +83,10 @@ public class Cultist : BaseUnit
 
     protected override void UnitDie()
     {
-        Destroy(leaderSprite.gameObject);
+        if (curLeaderSprite != null)
+        {
+            Destroy(curLeaderSprite.gameObject);
+        }
         base.UnitDie();
     }
 }
