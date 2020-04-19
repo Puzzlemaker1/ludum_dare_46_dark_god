@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BaseUnit : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class BaseUnit : MonoBehaviour
     public Sprite sprite2;
     public int health = 1;
     public GameObject deathFX;
+    public MainMenu SoundController;
 
     public void InitializeUnit(BaseUnit settings)
     {
@@ -19,6 +22,7 @@ public class BaseUnit : MonoBehaviour
         }
         System.Type type = settings.GetType();
         System.Reflection.FieldInfo[] fields = type.GetFields();
+
         foreach (System.Reflection.FieldInfo field in fields)
         {
             field.SetValue(this, field.GetValue(settings));
@@ -109,7 +113,8 @@ public class BaseUnit : MonoBehaviour
         Debug.Log("Health lost");
         this.health -= healthDelta;
         Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
-
+        this.GetComponent<AudioSource>().volume = SoundController.volume;
+        this.GetComponent<AudioSource>().Play();
         if (this.health <= 0)
         {
             Debug.Log("Unit dead");
@@ -125,5 +130,5 @@ public class BaseUnit : MonoBehaviour
 
 
 
-    
+
 }

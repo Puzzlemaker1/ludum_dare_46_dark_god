@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour {
 	public Slider ambienceSlider;
 	public Slider musicSlider;
   public float volume;
-	public AudioSource[] SEaudioList;
+	public List<AudioSource> SEaudioList;
 	public AudioSource[] AMBaudioList;
 	public AudioSource[] MUSaudioList;
 
@@ -32,9 +32,8 @@ public class MainMenu : MonoBehaviour {
 		//GameObject.Find ("FireCrackleSounds").GetComponent<AudioSource> ().volume = PlayerPrefsManager.GetMasterVolume () * PlayerPrefsManager.GetSoundEffectVolume ();
 		//GameObject.Find ("Misc Sounds").GetComponent<AudioSource> ().volume = PlayerPrefsManager.GetMasterVolume () * PlayerPrefsManager.GetSoundEffectVolume ();
 
-
-		foreach (AudioSource source in SEaudioList) {
-			source.volume = masterSlider.value ;
+		for (int i = 0; i < SEaudioList.Count; i++){
+			SEaudioList[i].volume = masterSlider.value ;
 		}
 		foreach (AudioSource source in AMBaudioList) {
 			source.volume = masterSlider.value ;
@@ -65,4 +64,10 @@ public class MainMenu : MonoBehaviour {
 	{
 		Application.Quit ();
 	}
+
+	public void AddSE(AudioSource newSource)
+	{
+		Debug.Log("sound!");
+		SEaudioList.Add(newSource);
+  }
 }
