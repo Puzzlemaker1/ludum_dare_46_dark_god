@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Inquisitor : BaseUnit
 {
-    public int ticksTillMove;
-    private int moveTimer;
+
     private Vector2Int enemyLocation = new Vector2Int(-1, -1);
     private Vector2Int castleLocation = new Vector2Int(-1, -1);
 
     protected override void UnitUpdate()
     {
-        //Do your stuff here
-        moveTimer++;
-        if (moveTimer > ticksTillMove)
-        {
+
             //Search out for the enemy!
             Tile tile = GetComponentInParent<Tile>();
             GridManager grid = this.transform.root.GetComponent<GridManager>();
@@ -24,7 +20,6 @@ public class Inquisitor : BaseUnit
                 //OH SHIT
                 enemyLocation = tile.coord;
                 //Play FOUND sound or whatever
-                moveTimer = 0;
                 return;
             }
             Vector2Int moveDir = new Vector2Int(0, 0);
@@ -83,7 +78,6 @@ public class Inquisitor : BaseUnit
             {
                 MoveUnit(moveDir);
             }
-            moveTimer = 0;
-        }
+
     }
 }

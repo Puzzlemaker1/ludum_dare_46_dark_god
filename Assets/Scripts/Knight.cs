@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Knight : BaseUnit
 {
-    // Start is called before the first frame update
-    public int ticksTillMove;
-    private int moveTimer;
+
     public Vector2Int enemyLocation = new Vector2Int(-1, -1);
     override protected void UnitStart()
     {
@@ -17,10 +15,7 @@ public class Knight : BaseUnit
     protected override void UnitUpdate()
     {
         //Do your stuff here
-        //Have a delay before every action
-        moveTimer++;
-        if (moveTimer > ticksTillMove)
-        {
+
             //First combat (part of move timer?)
             Tile tile = GetComponentInParent<Tile>();
             GridManager grid = this.transform.root.GetComponent<GridManager>();
@@ -79,7 +74,6 @@ public class Knight : BaseUnit
                     }
                 }
             }
-            moveTimer = 0;
-        }
+
     }
 }

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Victim : BaseUnit
 {
-    public int ticksTillMove;
-    private int moveTimer;
+
     private Vector2Int dir;
 
     public Sprite[] types = new Sprite[6];
@@ -21,9 +20,7 @@ public class Victim : BaseUnit
     protected override void UnitUpdate()
     {
         //Do your stuff here
-        moveTimer++;
-        if (moveTimer > ticksTillMove)
-        {
+
             Tile tile = GetComponentInParent<Tile>();
             if(tile is SacrificialChamber)
             {
@@ -54,14 +51,13 @@ public class Victim : BaseUnit
                     {
                         dir = neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord;
                         MoveUnit(dir);
-                        moveTimer = 0;
+
                         return;
                     }
                 }
                 
             }
 
-            moveTimer = 0;
-        }
+
     }
 }

@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class Succubus : BaseUnit
 {
-    public int ticksTillMove;
-    private int moveTimer;
+
     private Vector2Int tavernLocation = new Vector2Int(-1, -1);
     private bool satiated = false;
 
     protected override void UnitUpdate()
     {
-        //Do your stuff here
-        moveTimer++;
-        if (moveTimer > ticksTillMove)
-        {
+
             //Search out for the enemy!
             Tile tile = GetComponentInParent<Tile>();
             GridManager grid = this.transform.root.GetComponent<GridManager>();
@@ -57,7 +53,7 @@ public class Succubus : BaseUnit
             {
                 MoveUnit(moveDir);
             }
-            moveTimer = 0;
-        }
+
+
     }
 }

@@ -8,6 +8,7 @@ using System;
 public class BaseUnit : MonoBehaviour
 {
     private float timeSinceUpdate;
+    public float updateTime = 1;
     public Sprite sprite1;
     public Sprite sprite2;
     public int health = 1;
@@ -49,7 +50,7 @@ public class BaseUnit : MonoBehaviour
     void Update()
     {
         timeSinceUpdate += Time.deltaTime;
-        if (timeSinceUpdate > PlayerController.Instance.updateTime)
+        if (timeSinceUpdate > updateTime)
         {
             timeSinceUpdate = 0.0f;
 
