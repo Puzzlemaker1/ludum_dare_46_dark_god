@@ -3294,16 +3294,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5038af59d3a914d907b1de97c9ef6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 10, y: 10}
+  size: {x: 20, y: 20}
   xScale: 1
   yScale: 1
-  prefab:
-  - {fileID: 7167810224570155563, guid: ca4c921b4e64a1c4abbf37e5e993f903, type: 3}
-  - {fileID: 6375622309721244863, guid: 0a0b5dcdd66f83241af52a849ccfe302, type: 3}
-  - {fileID: -5697338699453513951, guid: bfe75022ccb5c394889dcc8224c31d32, type: 3}
-  - {fileID: 7627825712410567282, guid: 0cc53a51b75f7a34cbd31490b7af8a92, type: 3}
-  - {fileID: -2860579698565838372, guid: f584fdb929792d246a06d40dcc6297e7, type: 3}
-  prefabCount: 05000000050000004f000000010000000a000000
+  churchPrefab: {fileID: 7167810224570155563, guid: ca4c921b4e64a1c4abbf37e5e993f903,
+    type: 3}
+  castlePrefab: {fileID: 6375622309721244863, guid: 0a0b5dcdd66f83241af52a849ccfe302,
+    type: 3}
+  housePrefab: {fileID: -5697338699453513951, guid: bfe75022ccb5c394889dcc8224c31d32,
+    type: 3}
+  tavernPrefab: {fileID: -2860579698565838372, guid: f584fdb929792d246a06d40dcc6297e7,
+    type: 3}
+  wildernessPrefab: {fileID: -1784501030585948285, guid: a07b26787bb16a3448ca86f553976b87,
+    type: 3}
+  sacrificialChamberPrefab: {fileID: 7627825712410567282, guid: 0cc53a51b75f7a34cbd31490b7af8a92,
+    type: 3}
+  numTowns: 5
+  castlePerTown: 1
+  churchPerTown: 1
+  housePerTown: 10
+  tavernPerTown: 1
+  startingAreaSize: 10
 --- !u!4 &1957574728
 Transform:
   m_ObjectHideFlags: 0

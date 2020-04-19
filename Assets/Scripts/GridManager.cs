@@ -6,45 +6,144 @@ public class GridManager : MonoBehaviour
 {
     public Vector2Int size;
     public float xScale, yScale;
-    public Tile[] prefab;
-    public int[] prefabCount;
+    public Church churchPrefab;
+    public Castle castlePrefab;
+    public House housePrefab;
+    public Tavern tavernPrefab;
+    public Wilderness wildernessPrefab;
+    public SacrificialChamber sacrificialChamberPrefab;
+
+    public int numTowns;
+    public int castlePerTown;
+    public int churchPerTown;
+    public int housePerTown;
+    public int tavernPerTown;
+
+    public int startingAreaSize;
 
     Tile[,] tiles;
     // Start is called before the first frame update
     void Start()
     {
         tiles = new Tile[size.x, size.y];
-        Tile newTile;
-        ArrayList tempTiles = new ArrayList();
-        for(int i = 0; i < prefab.Length; i++)
+
+        List<System.Tuple<int, Tile>> townConfig = new List<System.Tuple<int, Tile>>();
+        townConfig.Add(new System.Tuple<int, Tile>(castlePerTown, castlePrefab));
+        townConfig.Add(new System.Tuple<int, Tile>(churchPerTown, churchPrefab));
+        townConfig.Add(new System.Tuple<int, Tile>(housePerTown, housePrefab));
+        townConfig.Add(new System.Tuple<int, Tile>(tavernPerTown, tavernPrefab));
+
+        ArrayList startingArea = new ArrayList();
+        ArrayList[] towns = new ArrayList[numTowns];
+        for (int startCount = 0; startCount < startingAreaSize; startCount++)
         {
-            for(int j = 0; j < prefabCount[i]; j++)
+            if(Random.Range(0, 3) == 0)
             {
-                tempTiles.Add(Instantiate(prefab[i]));
+                startingArea.Add(Instantiate(wildernessPrefab));
+            }
+            else
+            {
+                startingArea.Add(Instantiate(housePrefab));
             }
         }
-        FisherYatesShuffle(tempTiles);
-        int tileCount = 0;
+
+        FisherYatesShuffle(startingArea);
+
+        for (int townCount = 0; townCount < numTowns; townCount++)
+        {
+            towns[townCount] = new ArrayList();
+            foreach (System.Tuple<int, Tile> tileTuple in townConfig)
+            {
+                for(int c = 0; c < tileTuple.Item1; c++)
+                {
+                    towns[townCount].Add(Instantiate(tileTuple.Item2));
+                }
+            }
+            FisherYatesShuffle(towns[townCount]);
+            Debug.Log("Town count:" + towns[townCount].Count);
+        }
+
+        //Add our sacrifical chamber to the middle of the map.
+        int centerx = size.x / 2;
+        int centery = size.y / 2;
+        AddTile(Instantiate(sacrificialChamberPrefab), centerx, centery);
+
+        AddTown(startingArea, centerx , centery);
+        foreach (ArrayList town in towns)
+        {
+            Debug.Log("adding one town");
+            AddTown(town, Random.Range(0, size.x), Random.Range(0, size.y));
+        }
+
         for(int x = 0; x < size.x; x++)
         {
             for(int y = 0; y < size.y; y++)
             {
-                //clone = Instantiate(prefab[Random.Range(0, prefab.Length)], new Vector3(xScale * x, yScale * y), Quaternion.identity);
-                newTile = (Tile)tempTiles[tileCount];
-                tileCount++;
-                if(tileCount > tempTiles.Count)
+                if(tiles[x, y] == null)
                 {
-                    tileCount = 0;
+                    if (Random.Range(0, 3) == 0)
+                    {
+                        AddTile(Instantiate(housePrefab), x, y);
+                    }
+                    else
+                    {
+                        AddTile(Instantiate(wildernessPrefab), x, y);
+                    }
                 }
-                newTile.transform.position = new Vector3(xScale * x, yScale * y);
-                newTile.coord = new Vector2Int(x, y);
-                newTile.transform.parent = this.transform;
-                tiles[x, y] = newTile;
-                
             }
         }
+    }
 
-        
+    private bool AddTile(Tile newTile, int x, int y)
+    {
+        if(!IsValidTile(new Vector2Int(x, y)))
+        {
+            return false;
+        }
+        if(tiles[x,y] != null)
+        {
+            Debug.Log("Non null add tile thing");
+            return false;
+        }
+        newTile.transform.position = new Vector3(xScale * x, yScale * y);
+        newTile.transform.parent = this.transform;
+        Debug.Log("x: " + x + " y: " + y);
+        newTile.coord = new Vector2Int(x, y);
+        Debug.Log("Coord: " + newTile.coord);
+        tiles[x, y] = newTile;
+        return true;
+    }
+
+
+
+    private void AddTown(ArrayList town, int x, int y)
+    {
+        int edgeSize = (int)System.Math.Sqrt(town.Count);
+
+        AddTownRecursive(town, (edgeSize * -1) + x, edgeSize + x, (edgeSize * -1) + y, edgeSize + y);
+    }
+
+    private void AddTownRecursive(ArrayList town, int minX, int maxX, int minY, int maxY)
+    {
+        for(int curx = minX; curx < maxX; curx++)
+        {
+            for(int cury = minY; cury < maxY; cury++)
+            {
+                if(AddTile((Tile)town[0], curx, cury))
+                {
+                    town.RemoveAt(0);
+                    if(town.Count == 0)
+                    {
+                        Debug.Log("Finished adding town");
+                        //All finished
+                        return;
+                    }
+                }
+            }
+        }
+        //Not done yet?
+        Debug.Log("Recursively adding town");
+        AddTownRecursive(town, minX - 1, maxX + 1, minY - 1, maxY + 1);
     }
 
     //Yoinked from stack overflow

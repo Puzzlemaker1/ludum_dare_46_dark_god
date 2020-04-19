@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class House : Tile
+public class Wilderness : Tile
 {
     // Start is called before the first frame update
     public override void TileUpdate()
