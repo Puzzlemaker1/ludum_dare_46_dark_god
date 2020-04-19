@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Cultist : BaseUnit
 {
-
-    public int ticksTillSacrifice;
-    private int sacrificeTimer;
     public Sprite leftLeader;
     public Sprite rightLeader;
     public Sprite upLeader;
     public Sprite downLeader;
+
+    public enum LeaderState
+    {
+        leader,
+        necromancer,
+        none
+    }
 
     //Make these getters and setters instead of this
     public LeaderState hasLeader = LeaderState.none;
@@ -21,24 +25,19 @@ public class Cultist : BaseUnit
     // Start is called before the first frame update
     override protected void UnitStart()
     {
-        sacrificeTimer = 0;
     }
 
 
     protected override void UnitUpdate()
     {
         //Do your stuff here
-        sacrificeTimer++;
-        if (sacrificeTimer > ticksTillSacrifice)
+        Tile parentTile = this.GetComponentInParent<Tile>();
+        if (parentTile == null)
         {
-            sacrificeTimer = 0;
-            Tile parentTile = this.GetComponentInParent<Tile>();
-            if (parentTile == null)
-            {
-                Debug.Log("ERROR");
-            }
-            parentTile.CreateUnit<Victim>(PlayerController.Instance.victim);
+            Debug.Log("ERROR");
         }
+        parentTile.CreateUnit<Victim>(PlayerController.Instance.victim);
+
     }
     public void UpdateNecromancer()
     {

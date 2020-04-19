@@ -48,6 +48,12 @@ MonoBehaviour:
   blocking: 0
   coord: {x: 0, y: 0}
   sacrificeMultiplier: 0
+  ticksTillRespawn: 100
+  initialSpawnTicks: 10
+  randomDelayMax: 10
+  totalSpawns: 1
+  spawningUnit: {fileID: 1208472717411927010, guid: 592a3371d5406f64f82d0fdb0e63694f,
+    type: 3}
   ticksTillSpawn: 2
 --- !u!212 &7309337460710377630
 SpriteRenderer:

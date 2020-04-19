@@ -1270,7 +1270,8 @@ MonoBehaviour:
   victim: {fileID: 1114751799938583139, guid: 628a145e9ebf8314eb7f4c86914988d6, type: 3}
   zombie: {fileID: 1454384450126055781, guid: a870e72341877a847a5da77556b590f1, type: 3}
   anythingElseIForgot: {fileID: 0}
-  succubus: {fileID: 0}
+  succubus: {fileID: -4209736163747855628, guid: a42c01e14a7fafc43bd937193d8b3f34,
+    type: 3}
   updateTime: 0.2
   SpellButton1Image: {fileID: 1963065637}
   SpellButton2Image: {fileID: 1277510360}

@@ -7,7 +7,7 @@ using System;
 
 public class BaseUnit : MonoBehaviour
 {
-    private float timeSinceUpdate;
+    
     public float updateTime = 1;
     public Sprite sprite1;
     public Sprite sprite2;
@@ -17,6 +17,10 @@ public class BaseUnit : MonoBehaviour
     public Camera SoundController;
     public AudioClip clip;
     public float maxMove = 1;
+
+    protected Tile hometile;
+
+    private float timeSinceUpdate;
     public enum LeaderState
     {
         leader,
@@ -40,6 +44,8 @@ public class BaseUnit : MonoBehaviour
         }
 
         SoundController = FindObjectOfType<Camera>();
+
+        hometile = this.GetComponentInParent<Tile>();
     }
 
     // Start is called before the first frame update

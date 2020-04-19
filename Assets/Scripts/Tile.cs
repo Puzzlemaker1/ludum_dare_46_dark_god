@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour, IPointerClickHandler
 {
-    private float timeSinceUpdate;
+    public float updateTime = 1;
     public bool blocking;
     public Vector2Int coord;
     public float sacrificeMultiplier;
+
+    private float timeSinceUpdate;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     void Update()
     {
         timeSinceUpdate += Time.deltaTime;
-        if (timeSinceUpdate > PlayerController.Instance.updateTime)
+        if (timeSinceUpdate > updateTime)
         {
             timeSinceUpdate = 0.0f;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Church : Tile
+public class Church : SpawningTile<Inquisitor>
 {
     public int ticksTillSpawn;
     private int spawnTimer;
@@ -10,12 +10,7 @@ public class Church : Tile
     // Start is called before the first frame update
     public override void TileUpdate()
     {
-        spawnTimer++;
-        if(!spawnedInquisitor && spawnTimer < ticksTillSpawn)
-        {
-            CreateUnit<Inquisitor>(PlayerController.Instance.inquisitor);
-            spawnedInquisitor = true;
-        }
+
         base.TileUpdate();
     }
 
