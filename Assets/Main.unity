@@ -1264,11 +1264,13 @@ MonoBehaviour:
   knight: {fileID: -7450504419167669928, guid: d78b06e901ca3394ea8c7756695d68ea, type: 3}
   inquisitor: {fileID: 1208472717411927010, guid: 592a3371d5406f64f82d0fdb0e63694f,
     type: 3}
-  necromancer: {fileID: 0}
+  necromancer: {fileID: -959500049286010715, guid: e8e20a5ab18fc404482100d0d1b50df3,
+    type: 3}
   villager: {fileID: 0}
   victim: {fileID: 1114751799938583139, guid: 628a145e9ebf8314eb7f4c86914988d6, type: 3}
-  zombie: {fileID: 0}
+  zombie: {fileID: 1454384450126055781, guid: a870e72341877a847a5da77556b590f1, type: 3}
   anythingElseIForgot: {fileID: 0}
+  succubus: {fileID: 0}
   updateTime: 0.2
   SpellButton1Image: {fileID: 1963065637}
   SpellButton2Image: {fileID: 1277510360}
