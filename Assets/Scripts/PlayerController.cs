@@ -35,17 +35,33 @@ public class PlayerController : MonoBehaviour
 
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
-    public Image SpellButton1Image;
-    public Image SpellButton2Image;
-    public Image SpellButton3Image;
-    public Image SpellButton4Image;
-    public Image SpellButton5Image;
+    public Image SpellButton1;
+    public Sprite SpellButton1Image;
+    public Sprite SpellButton1ImageHighlight;
+    public Image SpellButton2;
+    public Sprite SpellButton2Image;
+    public Sprite SpellButton2ImageHighlight;
+    public Image SpellButton3;
+    public Sprite SpellButton3Image;
+    public Sprite SpellButton3ImageHighlight;
+    public Image SpellButton4;
+    public Sprite SpellButton4Image;
+    public Sprite SpellButton4ImageHighlight;
+    public Image SpellButton5;
+    public Sprite SpellButton5Image;
+    public Sprite SpellButton5ImageHighlight;
+
     public MainMenu VolumeControl;
 
     public Text manaText;
     public Slider manaSlider;
-
     public int mana;
+    public int maxMana;
+
+    public Text lifeText;
+    public Slider lifeSlider;
+    public int life;
+    public int maxLife;
     // Start is called before the first frame update
     void Start()
     {
@@ -181,24 +197,43 @@ public class PlayerController : MonoBehaviour
     public void Spell1Clicked()
     {
         curUserState = UserStates.cultist;
-
+        unhighlight();
+        SpellButton1.sprite = SpellButton1ImageHighlight;
     }
     public void Spell2Clicked()
     {
         curUserState = UserStates.necromancer;
+        unhighlight();
+        SpellButton2.sprite = SpellButton2ImageHighlight;
     }
     public void Spell3Clicked()
     {
         curUserState = UserStates.succubus;
+        unhighlight();
+        SpellButton3.sprite = SpellButton3ImageHighlight;
     }
     public void Spell4Clicked()
     {
         curUserState = UserStates.leader;
+        unhighlight();
+        SpellButton4.sprite = SpellButton4ImageHighlight;
     }
     public void Spell5Clicked()
     {
 
+      // unhighlight();
+      // SpellButton5 = SpellButton5ImageHighlight;
     }
+    public void unhighlight()
+    {
+      SpellButton1.sprite = SpellButton1Image;
+      SpellButton2.sprite = SpellButton2Image;
+      SpellButton3.sprite = SpellButton3Image;
+      SpellButton4.sprite = SpellButton4Image;
+      // SpellButton5 = SpellButton5Image;
+    }
+
+
     public void knightdebugClicked()
     {
         curUserState = UserStates.knight;
@@ -206,14 +241,33 @@ public class PlayerController : MonoBehaviour
 
     public void DeltaMana(int manaDelta)
     {
-        SetMana(mana + manaDelta);
+        if (mana + manaDelta <= maxMana)
+        {
+          SetMana(mana + manaDelta);
+          SetLife(life + 5);
+        }
+        else
+        {
+           maxMana = maxMana + 1;
+           SetMana(maxMana);
+           SetLife(life + 15);
+        }
     }
 
     public void SetMana(int newMana)
     {
         mana = newMana;
-        manaText.text = mana + "/100";
+        manaText.text = mana + "/" + maxMana;
         manaSlider.value = mana;
+        manaSlider.maxValue = maxMana;
+    }
+
+    public void SetLife(int newLife)
+    {
+        life = newLife;
+        lifeText.text = life + "/" + maxLife;
+        lifeSlider.value = life;
+        lifeSlider.maxValue = maxLife;
     }
 
     public int GetMana()
