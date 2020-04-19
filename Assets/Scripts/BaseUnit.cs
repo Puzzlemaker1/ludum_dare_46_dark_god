@@ -179,8 +179,14 @@ public class BaseUnit : MonoBehaviour
     {
         Debug.Log("Health lost");
         this.health -= healthDelta;
-        Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
-        SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
+        if (deathFX != null)
+        {
+           Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
+        }
+        if (clip != null)
+        {
+          SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
+        }
         if (this.health <= 0)
         {
             Debug.Log("Unit dead");
