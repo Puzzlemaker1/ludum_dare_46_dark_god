@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7167810224570155562}
   - component: {fileID: 7309337460710377630}
   - component: {fileID: -6045214837736493808}
-  - component: {fileID: 7627825712410567282}
+  - component: {fileID: -2860579698565838372}
   m_Layer: 0
-  m_Name: SacrificePrefab
+  m_Name: TavernPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6652adcf089a30e41bb633f31f335c22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c35ddbab542a2f4787dcb857cf9bab3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -109,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7627825712410567282
+--- !u!114 &-2860579698565838372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7167810224570155540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13da211aba6ba4447be7aed3c7e3f582, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ccf967f8dfcd80418121cb2b6b85451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blocking: 0

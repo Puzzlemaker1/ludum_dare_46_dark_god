@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
     private float timeSinceUpdate;
     public bool blocking;
     public Vector2Int coord;
+    public float sacrificeMultiplier;
 
     // Start is called before the first frame update
     void Start()

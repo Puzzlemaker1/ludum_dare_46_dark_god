@@ -3266,8 +3266,9 @@ MonoBehaviour:
   - {fileID: 7167810224570155563, guid: ca4c921b4e64a1c4abbf37e5e993f903, type: 3}
   - {fileID: 6375622309721244863, guid: 0a0b5dcdd66f83241af52a849ccfe302, type: 3}
   - {fileID: -5697338699453513951, guid: bfe75022ccb5c394889dcc8224c31d32, type: 3}
-  - {fileID: 5695715102138982023, guid: 2ce3b961612ba18449579ba5eaa47172, type: 3}
-  prefabCount: 
+  - {fileID: 7627825712410567282, guid: 0cc53a51b75f7a34cbd31490b7af8a92, type: 3}
+  - {fileID: -2860579698565838372, guid: f584fdb929792d246a06d40dcc6297e7, type: 3}
+  prefabCount: 05000000050000004f000000010000000a000000
 --- !u!4 &1957574728
 Transform:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class BaseUnit : MonoBehaviour
 {
@@ -75,6 +76,55 @@ public class BaseUnit : MonoBehaviour
         }
     }
 
+    public List<T> LocateEntity<T>(int distance)
+    {
+        List<T> entities = new List<T>();
+        GridManager grid = this.transform.root.GetComponent<GridManager>();
+        for (int x = -1 * distance; x <= distance; x++)
+        {
+            for (int y = -1 * distance; y <= distance; y++)
+            {
+                Vector2Int coord = new Vector2Int(x, y);
+                if (this.transform.root.GetComponent<GridManager>().IsValidTile(coord))
+                {
+                    T entity = default(T);
+                    Type entityType = typeof(T);
+                    if(entityType == typeof(Tile))
+                    {
+                        entities.Add(grid.getTile(coord).GetComponent<T>());
+                    }
+                    else if (entityType == typeof(BaseUnit))
+                    {
+                        entities.Add(grid.getTile(coord).GetComponent<T>());
+                    }
+                }
+            }
+        }
+        return entities;
+    }
+
+    public List<T> LocateTiles<T>() where T : Tile
+    {
+        List<T> tiles = new List<T>();
+        GridManager grid = this.transform.root.GetComponent<GridManager>();
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = 01; y <= 1; y++)
+            {
+                Vector2Int coord = new Vector2Int(x, y);
+                if (this.transform.root.GetComponent<GridManager>().IsValidTile(coord))
+                {
+                    Tile tile = grid.getTile(coord);
+                    if (tile is T)
+                    {
+                        tiles.Add((T)tile);
+                    }
+                }
+            }
+        }
+        return tiles;
+    }
+
     public void MoveUnit(Vector2Int dir)
     {
         if (dir.magnitude > 1)
@@ -85,7 +135,7 @@ public class BaseUnit : MonoBehaviour
         Tile tile = this.GetComponentInParent<Tile>();
         GridManager grid = tile.GetComponentInParent<GridManager>();
         Vector2Int newCoord = tile.coord + dir;
-        if (newCoord.x < 0 || newCoord.y < 0 || newCoord.x >= grid.size.x || newCoord.y >= grid.size.y)
+        if(!this.transform.root.GetComponent<GridManager>().IsValidTile(newCoord))
         {
             //Invalid Move!
             //Should we return a false?

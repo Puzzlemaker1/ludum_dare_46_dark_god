@@ -69,4 +69,13 @@ public class GridManager : MonoBehaviour
     {
         return tiles[tileCoord.x, tileCoord.y];
     }
+
+    public bool IsValidTile(Vector2Int coord)
+    {
+        if (coord.x < 0 || coord.y < 0 || coord.x >= this.size.x || coord.y >= this.size.y)
+        {
+            return false;
+        }
+        return true;
+    }
 }
