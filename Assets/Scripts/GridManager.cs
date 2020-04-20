@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour
     public Tavern tavernPrefab;
     public Wilderness wildernessPrefab;
     public SacrificialChamber sacrificialChamberPrefab;
+    public Camera maincamera;
 
     public int numTowns;
     public int castlePerTown;
@@ -76,7 +77,7 @@ public class GridManager : MonoBehaviour
         int centerx = size.x / 2;
         int centery = size.y / 2;
         AddTile(Instantiate(sacrificialChamberPrefab), centerx, centery);
-
+        maincamera.transform.position = new Vector3(centerx,centery,-10);
         AddTown(startingArea, centerx , centery);
         foreach (ArrayList town in towns)
         {
@@ -175,7 +176,7 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public Tile getTile(Vector2Int tileCoord)

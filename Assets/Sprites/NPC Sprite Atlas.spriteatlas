@@ -59,7 +59,9 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 19840b5ddeab6bb499cc9c6f839afef0, type: 3}
     - {fileID: 21300000, guid: d6f77e7505e0e1f4d9afb3d8329b8e49, type: 3}
     - {fileID: 21300000, guid: 21fbdd90b3acbf64aa253a34c840521f, type: 3}
-    totalSpriteSurfaceArea: 3685
+    - {fileID: 21300000, guid: b0e51748ed2623a489fb6db2f071291a, type: 3}
+    - {fileID: 21300000, guid: b205fa0ac59511040b68a3de3dcd7d8e, type: 3}
+    totalSpriteSurfaceArea: 3781
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -77,7 +79,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ca21cf978ff730849a5acd1002a9b275, type: 3}
   - {fileID: 21300000, guid: ba1253f7205d062428bdbfd0d497cd91, type: 3}
   - {fileID: 21300000, guid: 589d3148d295e2a4ba4cc6d1a40ee389, type: 3}
+  - {fileID: 21300000, guid: b0e51748ed2623a489fb6db2f071291a, type: 3}
   - {fileID: 21300000, guid: f7b3c6f86fa1a5c47931c425fc8547d0, type: 3}
+  - {fileID: 21300000, guid: b205fa0ac59511040b68a3de3dcd7d8e, type: 3}
   - {fileID: 21300000, guid: a451b64a48a333343944d7017a6dbbab, type: 3}
   - {fileID: 21300000, guid: c3d765fab7e11954f8669d3f30c834d7, type: 3}
   - {fileID: 21300000, guid: 40e76fbbb3ca51844b5e7481da0a5acf, type: 3}
@@ -107,7 +111,9 @@ SpriteAtlas:
   - OptionsGear
   - victimc2
   - Arrow Right
+  - Ghost2
   - Cultist1
+  - Ghost1
   - Succubus2
   - Cultist2
   - victimB1

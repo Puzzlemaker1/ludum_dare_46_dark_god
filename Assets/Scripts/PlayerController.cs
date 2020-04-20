@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
         cultist,
         necromancer,
         succubus,
-        knight
+        knight,
+        ghost
     }
 
     public UserStates curUserState;
@@ -106,6 +107,33 @@ public class PlayerController : MonoBehaviour
         {
             moveVec.x += moveSpeed;
         }
+
+        if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Spell1Clicked();
+        }
+        if (Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Spell2Clicked();
+        }
+        if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Spell3Clicked();
+        }
+        if (Input.GetKey(KeyCode.Alpha4) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Spell4Clicked();
+        }
+        if (Input.GetKey(KeyCode.Alpha5) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Spell5Clicked();
+        }
+
+
+
+
+
+
         this.transform.position += moveVec;
 
         /*
@@ -166,8 +194,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (curUserState == UserStates.cultist_taskmaster)
         {
-            
+
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
+
             if (!tileCultist)
             {
                 curUserState = UserStates.cultist;
@@ -175,6 +204,7 @@ public class PlayerController : MonoBehaviour
                 TileClicked(tile);
                 curUserState = UserStates.cultist_taskmaster;
             }
+            
             if (tileCultist.curLeaderState == Cultist.LeaderState.none)
             {
                 if (mana >= taskmasterCost)
@@ -260,9 +290,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Spell5Clicked()
     {
-
-      // unhighlight();
-      // SpellButton5 = SpellButton5ImageHighlight;
+      curUserState = UserStates.ghost;
+      unhighlight();
+      SpellButton5.sprite = SpellButton5ImageHighlight;
     }
     public void unhighlight()
     {
@@ -270,7 +300,7 @@ public class PlayerController : MonoBehaviour
       SpellButton2.sprite = SpellButton2Image;
       SpellButton3.sprite = SpellButton3Image;
       SpellButton4.sprite = SpellButton4Image;
-      // SpellButton5 = SpellButton5Image;
+      SpellButton5.sprite = SpellButton5Image;
     }
 
 
