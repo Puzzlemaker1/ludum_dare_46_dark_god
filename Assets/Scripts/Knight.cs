@@ -45,7 +45,7 @@ public class Knight : BaseUnit
         {
             //No combat or victims to save.
             //First:  Think with your pants.
-            Succubus foundSuccubus = LocateClosestGridEntity<Succubus>(2);
+            Succubus foundSuccubus = LocateClosestGridEntity<Succubus>(1);
             if (foundSuccubus != null)
             {
                 //Hey there cute stuff

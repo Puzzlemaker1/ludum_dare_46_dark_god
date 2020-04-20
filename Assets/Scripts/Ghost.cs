@@ -17,22 +17,11 @@ public class Ghost : BaseUnit
 
     protected override void UnitUpdate()
     {
-        //Do your stuff here
-    //     sacrificeTimer++;
-    //     if (sacrificeTimer > ticksTillSacrifice)
-    //     {
-    //         sacrificeTimer = 0;
-    //         Tile parentTile = this.GetComponentInParent<Tile>();
-    //         if (parentTile == null)
-    //         {
-    //             Debug.Log("ERROR");
-    //         }
-    //         parentTile.CreateUnit<Victim>(PlayerController.Instance.victim);
-    //     }
+
     }
-    //
-    // protected override void UnitDie()
-    // {
-    //     base.UnitDie();
-    // }
+
+    protected override void UnitDie()
+    {
+        base.UnitDie();
+    }
 }
