@@ -34,18 +34,23 @@ public class PlayerController : MonoBehaviour
     private static PlayerController instance;
     public static PlayerController Instance { get { return instance; } }
     public Image SpellButton1;
+    public Text SpellManaText1;
     public Sprite SpellButton1Image;
     public Sprite SpellButton1ImageHighlight;
     public Image SpellButton2;
+    public Text SpellManaText2;
     public Sprite SpellButton2Image;
     public Sprite SpellButton2ImageHighlight;
     public Image SpellButton3;
+    public Text SpellManaText3;
     public Sprite SpellButton3Image;
     public Sprite SpellButton3ImageHighlight;
     public Image SpellButton4;
+    public Text SpellManaText4;
     public Sprite SpellButton4Image;
     public Sprite SpellButton4ImageHighlight;
     public Image SpellButton5;
+    public Text SpellManaText5;
     public Sprite SpellButton5Image;
     public Sprite SpellButton5ImageHighlight;
 
@@ -66,6 +71,7 @@ public class PlayerController : MonoBehaviour
     public int necroCost;
     public int succCost;
     public int taskmasterCost;
+    public int ghostCost;
 
     private float timeSinceUpdate;
 
@@ -76,6 +82,11 @@ public class PlayerController : MonoBehaviour
         lifeSlider.maxValue = maxLife;
         manaSlider.maxValue = maxMana;
 
+        SpellManaText1.text = ""+cultistCost;
+        SpellManaText2.text = ""+necroCost;
+        SpellManaText3.text = ""+succCost;
+        SpellManaText4.text = ""+taskmasterCost;
+        SpellManaText5.text = ""+ghostCost;
     }
 
     // Update is called once per frame
