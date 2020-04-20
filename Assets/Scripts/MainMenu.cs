@@ -112,6 +112,11 @@ public class MainMenu : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void GameOverClick()
+	{
+		SceneManager.LoadScene("SplashScreen");
+	}
+
 	public void AddSE(AudioSource newSource)
 	{
 		Debug.Log("sound!");

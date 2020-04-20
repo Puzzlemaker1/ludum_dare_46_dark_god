@@ -38,7 +38,7 @@ public class GridManager : MonoBehaviour
         ArrayList[] towns = new ArrayList[numTowns];
         for (int startCount = 0; startCount < startingAreaSize; startCount++)
         {
-            if(Random.Range(0, 4) == 0)
+            if(Random.Range(0, 2) == 0)
             {
                 startingArea.Add(Instantiate(wildernessPrefab));
             }
@@ -131,14 +131,17 @@ public class GridManager : MonoBehaviour
     {
         int edgeSize = (int)System.Math.Sqrt(town.Count);
 
+        //Because we use this for min and max
+        edgeSize /= 2;
+
         AddTownRecursive(town, (edgeSize * -1) + x, edgeSize + x, (edgeSize * -1) + y, edgeSize + y);
     }
 
     private void AddTownRecursive(ArrayList town, int minX, int maxX, int minY, int maxY)
     {
-        for(int curx = minX; curx < maxX; curx++)
+        for(int curx = minX; curx <= maxX; curx++)
         {
-            for(int cury = minY; cury < maxY; cury++)
+            for(int cury = minY; cury <= maxY; cury++)
             {
                 if(AddTile((Tile)town[0], curx, cury))
                 {

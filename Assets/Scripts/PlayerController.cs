@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip winClip;
     public AudioClip loseClip;
 
+    public Button gameOverButton;
+
     private float timeSinceUpdate;
 
     // Start is called before the first frame update
@@ -94,13 +96,14 @@ public class PlayerController : MonoBehaviour
         SpellManaText5.text = ""+ghostCost;
 
         SoundController = FindObjectOfType<Camera>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-      timeSinceUpdate += Time.deltaTime;
+        timeSinceUpdate += Time.deltaTime;
       if (timeSinceUpdate > updateTime)
       {
           timeSinceUpdate = 0.0f;
@@ -175,15 +178,34 @@ public class PlayerController : MonoBehaviour
     }
     private void WorldUpdate()
     {
-      SetLife(life-1);
-      if (life <= 0 )
-      {
-        //gameover
-      }
-      if (life >= 1000 )
-      {
-        //gameover win!
-      }
+        
+        SetLife(life - 1);
+        if(gameOverButton.IsActive())
+        {
+            //This is so there is a slight delay so the player can see the splash screen.
+            gameOverButton.interactable = true;
+            return;
+        }
+        if (life <= 0)
+        {
+            gameOverButton.gameObject.SetActive(true);
+            gameOverButton.GetComponent<Text>().text = "YOU LOSE!";
+            gameOverButton.interactable = false;
+            if (loseClip != null)
+            {
+                SoundController.GetComponent<AudioSource>().PlayOneShot(loseClip);
+            }
+        }
+        if (life >= 1000)
+        {
+            gameOverButton.gameObject.SetActive(true);
+            gameOverButton.GetComponent<Text>().text = "YOU WIN!";
+            gameOverButton.interactable = false;
+            if (winClip != null)
+            {
+                SoundController.GetComponent<AudioSource>().PlayOneShot(winClip);
+            }
+        }
     }
 
     public void TileClicked(Tile tile)
@@ -416,7 +438,7 @@ public class PlayerController : MonoBehaviour
     public void SetLife(int newLife)
     {
         life = newLife;
-        lifeText.text = life + "/" + maxLife;
+        lifeText.text = "Life: " + life + "/" + maxLife;
         lifeSlider.value = life;
         lifeSlider.maxValue = maxLife;
     }
