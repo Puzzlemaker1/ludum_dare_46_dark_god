@@ -1262,9 +1262,7 @@ MonoBehaviour:
   charactorBase: {fileID: 4494084558754531586, guid: 232119c9897abef4fbcba387f3cb4950,
     type: 3}
   cultist: {fileID: 6089771476811398025, guid: e56963ec605504f4695b74b57309c446, type: 3}
-  necromancer: {fileID: -959500049286010715, guid: e8e20a5ab18fc404482100d0d1b50df3,
-    type: 3}
-  villager: {fileID: 0}
+  ghost: {fileID: -959500049286010715, guid: e8e20a5ab18fc404482100d0d1b50df3, type: 3}
   victim: {fileID: 1114751799938583139, guid: 628a145e9ebf8314eb7f4c86914988d6, type: 3}
   zombie: {fileID: 1454384450126055781, guid: a870e72341877a847a5da77556b590f1, type: 3}
   succubus: {fileID: -4209736163747855628, guid: a42c01e14a7fafc43bd937193d8b3f34,
@@ -1308,7 +1306,12 @@ MonoBehaviour:
   necroCost: 20
   succCost: 20
   taskmasterCost: 10
-  ghostCost: 0
+  ghostCost: 30
+  SoundController: {fileID: 0}
+  castClip: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  outOfManaClip: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+  winClip: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+  loseClip: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2659,7 +2662,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &1283116243
 RectTransform:
@@ -3716,7 +3719,7 @@ MonoBehaviour:
   churchPerTown: 1
   housePerTown: 10
   tavernPerTown: 1
-  startingAreaSize: 10
+  startingAreaSize: 20
 --- !u!4 &1957574728
 Transform:
   m_ObjectHideFlags: 0

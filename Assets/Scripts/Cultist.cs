@@ -33,8 +33,7 @@ public class Cultist : BaseUnit
     // Start is called before the first frame update
     override protected void UnitStart()
     {
-        curLeaderSprite = Instantiate(leaderSprite);
-        curLeaderSprite.enabled = false;
+        
         curSacrificePoints = 0;
     }
 
@@ -62,6 +61,12 @@ public class Cultist : BaseUnit
 
     public void UpdateLeader(LeaderState newState)
     {
+        if(curLeaderSprite == null)
+        {
+            curLeaderSprite = Instantiate(leaderSprite);
+            curLeaderSprite.enabled = false;
+        }
+
         if(curLeaderState == LeaderState.none)
         {
             if(newState == LeaderState.necromancer)
@@ -115,7 +120,8 @@ public class Cultist : BaseUnit
         }
         else if(newState != curLeaderState)
         {
-            ClearLeader();
+            curLeaderState = LeaderState.none;
+            curLeaderSprite.enabled = false;
             UpdateLeader(newState);
         }
     }
@@ -133,7 +139,6 @@ public class Cultist : BaseUnit
         {
             Destroy(curLeaderSprite.gameObject);
         }
-        curLeaderState = LeaderState.none;
     }
     public override void LoseHealth(int healthDelta)
     {
@@ -142,9 +147,9 @@ public class Cultist : BaseUnit
         {
             Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
         }
-        if (clip != null)
+        if (deathClip != null)
         {
-            SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
+            SoundController.GetComponent<AudioSource>().PlayOneShot(deathClip);
         }
         if (curLeaderState == LeaderState.necromancer)
         {

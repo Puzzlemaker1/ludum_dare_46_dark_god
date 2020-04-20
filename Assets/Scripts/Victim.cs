@@ -5,7 +5,10 @@ using UnityEngine;
 public class Victim : BaseUnit
 {
     public int manaBoost = 10;
+    public bool terrified = false;
     private Vector2Int dir;
+
+    public AudioClip escapeClip;
 
     public Sprite[] types = new Sprite[6];
     // Start is called before the first frame update
@@ -14,14 +17,28 @@ public class Victim : BaseUnit
         int type = Random.Range(0, 2);
         this.sprite1 = types[type*2];
         this.sprite2 = types[type*2 + 1];
+        this.hometile = this.transform.root.GetComponent<SacrificialChamber>();
     }
 
 
     protected override void UnitUpdate()
     {
         //Do your stuff here
-
         Tile tile = GetComponentInParent<Tile>();
+        if (terrified)
+        {
+            if (this.hometile && this.hometile.coord == tile.coord)
+            {
+                terrified = false;
+            }
+            else
+            {
+                MoveUnit(this.hometile.coord - tile.coord);
+            }
+            return;
+        }
+
+
         if (tile is SacrificialChamber)
         {
             //Sacrifice yourself!
@@ -57,5 +74,11 @@ public class Victim : BaseUnit
         }
 
 
+    }
+
+    public void FreeVictim()
+    {
+        this.deathClip = escapeClip;
+        this.UnitDie();
     }
 }

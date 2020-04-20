@@ -6,6 +6,7 @@ public class Knight : BaseUnit
 {
 
     public Vector2Int enemyLocation = new Vector2Int(-1, -1);
+    public bool terrified = false;
     override protected void UnitStart()
     {
 
@@ -16,8 +17,23 @@ public class Knight : BaseUnit
     {
         //Do your stuff here
 
+
         //First combat (part of move timer?)
         Tile tile = GetComponentInParent<Tile>();
+
+        if (terrified)
+        {
+            if (this.hometile.coord == tile.coord)
+            {
+                terrified = false;
+            }
+            else
+            {
+                MoveUnit(this.hometile.coord - tile.coord);
+            }
+            return;
+        }
+
         GridManager grid = this.transform.root.GetComponent<GridManager>();
         Cultist cultist = tile.GetComponentInChildren<Cultist>();
         Zombie zombie = tile.GetComponentInChildren<Zombie>();

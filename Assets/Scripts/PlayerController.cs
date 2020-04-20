@@ -72,6 +72,12 @@ public class PlayerController : MonoBehaviour
     public int taskmasterCost;
     public int ghostCost;
 
+    public Camera SoundController;
+    public AudioClip castClip;
+    public AudioClip outOfManaClip;
+    public AudioClip winClip;
+    public AudioClip loseClip;
+
     private float timeSinceUpdate;
 
     // Start is called before the first frame update
@@ -86,6 +92,8 @@ public class PlayerController : MonoBehaviour
         SpellManaText3.text = ""+succCost;
         SpellManaText4.text = ""+taskmasterCost;
         SpellManaText5.text = ""+ghostCost;
+
+        SoundController = FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame
@@ -184,18 +192,8 @@ public class PlayerController : MonoBehaviour
         if (curUserState == UserStates.cultist)
         {
             //Okay!
-
-            if (mana >= cultistCost)
-            {
-                DeltaMana(-cultistCost);
-            }
-            else
-            {
-                NotEnoughMana();
-                return;
-            }
-
-            Cultist tileCultist = tile.CreateOrBoostUnit<Cultist>(cultist, 1);
+            SpawnCultist(tile);
+            PlayCastClip();
 
         }
         else if (curUserState == UserStates.knight)
@@ -209,13 +207,22 @@ public class PlayerController : MonoBehaviour
 
             if (!tileCultist)
             {
-                curUserState = UserStates.cultist;
-                //SUUUPER HACKY
-                TileClicked(tile);
-                curUserState = UserStates.cultist_taskmaster;
-                return;
+                
+                if (mana >= taskmasterCost + cultistCost)
+                {
+                    DeltaMana(-(taskmasterCost + cultistCost));
+                }
+                else
+                {
+                    NotEnoughMana();
+                    return;
+                }
+                tileCultist = SpawnCultist(tile);
+                tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
+                PlayCastClip();
+
             }
-            if (tileCultist.curLeaderState == Cultist.LeaderState.none)
+            else if (tileCultist.curLeaderState != Cultist.LeaderState.taskmaster)
             {
                 if (mana >= taskmasterCost)
                 {
@@ -226,33 +233,50 @@ public class PlayerController : MonoBehaviour
                     NotEnoughMana();
                     return;
                 }
+                tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
+                PlayCastClip();
             }
-            Debug.Log("Updating LEADER");
-            tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
+            else
+            {
+                tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
+            }
 
         }
         else if (curUserState == UserStates.necromancer)
         {
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
-            if (tileCultist)
+
+            if (!tileCultist)
             {
-                if (tileCultist.curLeaderState != Cultist.LeaderState.necromancer)
+
+                if (mana >= necroCost + cultistCost)
                 {
-                    if (mana >= necroCost)
-                    {
-                        DeltaMana(-necroCost);
-                    }
-                    else
-                    {
-                        NotEnoughMana();
-                        return;
-                    }
-                    Debug.Log("Updating NECROMANCER");
-                    tileCultist.UpdateLeader(Cultist.LeaderState.necromancer);
+                    DeltaMana(-(necroCost + cultistCost));
                 }
+                else
+                {
+                    NotEnoughMana();
+                    return;
+                }
+                tileCultist = SpawnCultist(tile);
+                tileCultist.UpdateLeader(Cultist.LeaderState.necromancer);
+                PlayCastClip();
+
             }
-
-
+            else if (tileCultist.curLeaderState != Cultist.LeaderState.necromancer)
+            {
+                if (mana >= necroCost)
+                {
+                    DeltaMana(-necroCost);
+                }
+                else
+                {
+                    NotEnoughMana();
+                    return;
+                }
+                tileCultist.UpdateLeader(Cultist.LeaderState.necromancer);
+                PlayCastClip();
+            }
         }
         else if (curUserState == UserStates.succubus)
         {
@@ -266,6 +290,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             Succubus tileSuccubus = tile.CreateUnit<Succubus>(succubus);
+            PlayCastClip();
         }
         else if(curUserState == UserStates.ghost)
         {
@@ -279,11 +304,38 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             Ghost tileGhost = tile.CreateUnit<Ghost>(ghost);
+            PlayCastClip();
         }
     }
 
+    public Cultist SpawnCultist(Tile tile)
+    {
+        if (mana >= cultistCost)
+        {
+            DeltaMana(-cultistCost);
+        }
+        else
+        {
+            NotEnoughMana();
+            return null;
+        }
+
+        return tile.CreateOrBoostUnit<Cultist>(cultist, 1);
+    }
+
+    public void PlayCastClip()
+    {
+        if (castClip != null)
+        {
+            SoundController.GetComponent<AudioSource>().PlayOneShot(castClip, 0.5f);
+        }
+    }
     protected void NotEnoughMana()
     {
+        if (outOfManaClip != null)
+        {
+            SoundController.GetComponent<AudioSource>().PlayOneShot(outOfManaClip);
+        }
 
     }
 

@@ -49,10 +49,15 @@ MonoBehaviour:
   sprite2: {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
   health: 1
   maxHealth: 5
+  healthPerUnit: 1
   deathFX: {fileID: 0}
   SoundController: {fileID: 0}
-  clip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: c55e7805482e70845a9db1f703c74a22, type: 3}
+  spawnClip: {fileID: 0}
   maxMove: 1
+  manaBoost: 10
+  terrified: 0
+  escapeClip: {fileID: 0}
   types:
   - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
   - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}

@@ -70,7 +70,6 @@ public class GridManager : MonoBehaviour
                 }
             }
             FisherYatesShuffle(towns[townCount]);
-            Debug.Log("Town count:" + towns[townCount].Count);
         }
 
         //Add our sacrifical chamber to the middle of the map.
@@ -81,7 +80,6 @@ public class GridManager : MonoBehaviour
         AddTown(startingArea, centerx , centery);
         foreach (ArrayList town in towns)
         {
-            Debug.Log("adding one town");
             AddTown(town, Random.Range(0, size.x), Random.Range(0, size.y));
         }
 
@@ -122,9 +120,7 @@ public class GridManager : MonoBehaviour
         }
         newTile.transform.position = new Vector3(xScale * x, yScale * y);
         newTile.transform.parent = this.transform;
-        Debug.Log("x: " + x + " y: " + y);
         newTile.coord = new Vector2Int(x, y);
-        Debug.Log("Coord: " + newTile.coord);
         tiles[x, y] = newTile;
         return true;
     }
@@ -157,7 +153,6 @@ public class GridManager : MonoBehaviour
             }
         }
         //Not done yet?
-        Debug.Log("Recursively adding town");
         AddTownRecursive(town, minX - 1, maxX + 1, minY - 1, maxY + 1);
     }
 

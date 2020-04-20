@@ -6,14 +6,30 @@ public class Inquisitor : BaseUnit
 {
     public int wanderTime = 20;
     private int curWanderTime = 0;
-    private Vector2Int enemyLocation = new Vector2Int(-1, -1);
-    private Vector2Int castleLocation = new Vector2Int(-1, -1);
+    public Vector2Int enemyLocation = new Vector2Int(-1, -1);
+    public Vector2Int castleLocation = new Vector2Int(-1, -1);
+
+    public bool terrified = false;
 
     protected override void UnitUpdate()
     {
 
         //Search out for the enemy!
         Tile tile = GetComponentInParent<Tile>();
+
+        if (terrified)
+        {
+            if (this.hometile.coord == tile.coord)
+            {
+                terrified = false;
+            }
+            else
+            {
+                MoveUnit(this.hometile.coord - tile.coord);
+            }
+            return;
+        }
+
         GridManager grid = this.transform.root.GetComponent<GridManager>();
         Cultist cultist = tile.GetComponentInChildren<Cultist>();
         if (enemyLocation != tile.coord && (tile is SacrificialChamber || cultist != null))

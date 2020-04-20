@@ -16,9 +16,10 @@ public class BaseUnit : MonoBehaviour
     public int healthPerUnit = 1;
     public GameObject deathFX;
     public Camera SoundController;
-    public AudioClip clip;
+    public AudioClip deathClip;
+    public AudioClip spawnClip;
     public float maxMove = 1;
-
+    
     protected Tile hometile;
 
     private float timeSinceUpdate;
@@ -48,6 +49,11 @@ public class BaseUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if (spawnClip != null)
+        {
+            SoundController.GetComponent<AudioSource>().PlayOneShot(spawnClip);
+        }
         //Let any children initlialization happen first
         UnitStart();
 
@@ -215,7 +221,10 @@ public class BaseUnit : MonoBehaviour
 
     protected virtual void UnitStart()
     {
-
+        if (spawnClip != null)
+        {
+            SoundController.GetComponent<AudioSource>().PlayOneShot(spawnClip, 0.5f);
+        }
     }
 
     public void GainHealth(int healthDelta)
@@ -232,11 +241,11 @@ public class BaseUnit : MonoBehaviour
         this.health -= healthDelta;
         if (deathFX != null)
         {
-           Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
+            Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
         }
-        if (clip != null)
+        if (deathClip != null)
         {
-          SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
+            SoundController.GetComponent<AudioSource>().PlayOneShot(deathClip, 0.5f);
         }
         if (this.health <= 0)
         {

@@ -21,19 +21,31 @@ public class Ghost : BaseUnit
         Tile tile = GetComponentInParent<Tile>();
         Knight knight = tile.GetComponentInChildren<Knight>();
         Inquisitor inquisitor = tile.GetComponentInChildren<Inquisitor>();
+        Victim victim = tile.GetComponentInChildren<Victim>();
         if (knight != null)
         {
+            knight.terrified = true;
             knight.enemyLocation.Set(-1, -1);
 
         }
         if (inquisitor != null)
         {
-            inquisitor.EndWander();
+            inquisitor.terrified = true;
+            inquisitor.enemyLocation.Set(-1, -1);
+        }
+        if(victim != null)
+        {
+            victim.terrified = true;
         }
         if(timeToLive <= 0)
         {
             UnitDie();
         }
+    }
+
+    public void ScareUnits()
+    {
+
     }
 
     protected override void UnitDie()

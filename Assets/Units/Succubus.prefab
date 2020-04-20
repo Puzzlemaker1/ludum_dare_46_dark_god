@@ -145,7 +145,10 @@ MonoBehaviour:
   sprite2: {fileID: 21300000, guid: a451b64a48a333343944d7017a6dbbab, type: 3}
   health: 1
   maxHealth: 5
+  healthPerUnit: 1
   deathFX: {fileID: 0}
   SoundController: {fileID: 0}
-  clip: {fileID: 0}
+  deathClip: {fileID: 8300000, guid: 005c884bdb8b84f4fa9f650734e5ff44, type: 3}
+  spawnClip: {fileID: 8300000, guid: 8bb07e4005807604bbf70f82de515449, type: 3}
   maxMove: 1
+  damage: 3
