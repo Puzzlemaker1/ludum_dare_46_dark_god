@@ -8,7 +8,8 @@ public class SpawningTile <T>  : Tile
     public int ticksTillRespawn = 100;
     public int initialSpawnTicks = 10;
     public int randomDelayMax = 10;
-    public int totalSpawns = 1;
+    public int minLifeToSpawn = 0;
+    public int healthPerSpawn = 1;
 
     public T spawningUnit;
     //public System.Type unitType;
@@ -21,19 +22,23 @@ public class SpawningTile <T>  : Tile
     public override void TileUpdate()
     {
         //WEee
-        spawnTimer++;
-        if (spawnTimer > (initialSpawn ? initialSpawnTicks : ticksTillRespawn) + randomDelay)
+        if (PlayerController.Instance.life > minLifeToSpawn)
         {
-            spawnTimer = 0;
-            if (initialSpawn)
+
+            spawnTimer++;
+            if (spawnTimer > (initialSpawn ? initialSpawnTicks : ticksTillRespawn) + randomDelay)
             {
-                spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
-                initialSpawn = false;
-            }
-            else if(spawnedUnit == null || spawnedUnit.GetComponentInParent<Tile>().coord == this.coord)
-            {
-                //if it's at home or it's been destroyed, spawn more!
-                spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
+                spawnTimer = 0;
+                if (initialSpawn)
+                {
+                    spawnedUnit = CreateOrBoostUnit<T>(spawningUnit, healthPerSpawn);
+                    initialSpawn = false;
+                }
+                else if (spawnedUnit == null || spawnedUnit.GetComponentInParent<Tile>().coord == this.coord)
+                {
+                    //if it's at home or it's been destroyed, spawn more!
+                    spawnedUnit = CreateOrBoostUnit<T>(spawningUnit, healthPerSpawn);
+                }
             }
         }
 

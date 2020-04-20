@@ -47,8 +47,9 @@ MonoBehaviour:
   updateTime: 1
   sprite1: {fileID: 21300000, guid: ebdac51fd6bcf5d479cbcbe442789615, type: 3}
   sprite2: {fileID: 21300000, guid: e668659e58bb3b840a40d5bf8d0e5eef, type: 3}
-  health: 1
+  health: 3
   maxHealth: 5
+  healthPerUnit: 3
   deathFX: {fileID: 108341686607824354, guid: 3b53a986108a1f34cb16ef672d7fffc8, type: 3}
   SoundController: {fileID: 0}
   clip: {fileID: 8300000, guid: 4f775d4f15e56d74980c5dcb6226fedd, type: 3}

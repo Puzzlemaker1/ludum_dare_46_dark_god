@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            Cultist tileCultist = tile.CreateOrBoostUnit<Cultist>(cultist);
+            Cultist tileCultist = tile.CreateOrBoostUnit<Cultist>(cultist, 1);
 
         }
         else if (curUserState == UserStates.knight)
@@ -283,14 +283,20 @@ public class PlayerController : MonoBehaviour
     {
         if (mana + manaDelta <= maxMana)
         {
-          SetMana(mana + manaDelta);
-          SetLife(life + mana/10);
+            SetMana(mana + manaDelta);
+            if (manaDelta > 0)
+            {
+                SetLife(life + (manaDelta / 10));
+            }
         }
         else
         {
-           maxMana = maxMana + mana/10;
-           SetMana(maxMana);
-           SetLife(life + mana/2);
+            if (manaDelta > 0)
+            {
+                SetLife(life + (manaDelta / 2));
+                maxMana = maxMana + manaDelta / 10;
+            }
+            SetMana(maxMana);
         }
     }
 

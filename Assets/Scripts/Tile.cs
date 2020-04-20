@@ -38,7 +38,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         return newUnit;
     }
 
-    public T CreateOrBoostUnit<T>(T unitSettings) where T : BaseUnit
+    public T CreateOrBoostUnit<T>(T unitSettings, int healthBoost) where T : BaseUnit
     {
         T unit = this.GetComponentInChildren<T>();
         if(unit == null)
@@ -47,7 +47,7 @@ public class Tile : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            unit.GainHealth(1);
+            unit.GainHealth(healthBoost);
         }
         return unit;
     }
