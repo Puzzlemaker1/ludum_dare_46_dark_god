@@ -22,13 +22,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject charactorBase;
     public Cultist cultist;
-    public Knight knight;
-    public Inquisitor inquisitor;
     public BaseUnit necromancer;
     public BaseUnit villager;
     public Victim victim;
     public Zombie zombie;
-    public BaseUnit anythingElseIForgot;
     public Succubus succubus;
 
     public float updateTime = 1;
@@ -63,6 +60,11 @@ public class PlayerController : MonoBehaviour
     public Slider lifeSlider;
     public int life;
     public int maxLife;
+
+    public int cultistCost;
+    public int necroCost;
+    public int succCost;
+    public int taskmasterCost;
 
     private float timeSinceUpdate;
 
@@ -145,13 +147,13 @@ public class PlayerController : MonoBehaviour
         {
             //Okay!
 
-            if (mana >= 10)
+            if (mana >= cultistCost)
             {
-                DeltaMana(-10);
+                DeltaMana(-cultistCost);
             }
             else
             {
-                //Not enough mana thing here?
+                NotEnoughMana();
                 return;
             }
 
@@ -160,65 +162,76 @@ public class PlayerController : MonoBehaviour
         }
         else if (curUserState == UserStates.knight)
         {
-            Knight tileKnight = tile.GetComponentInChildren<Knight>();
-            if (tileKnight != null)
-            {
-                tileKnight.health += 1;
-            }
-            else
-            {
-                tileKnight = tile.CreateUnit<Knight>(knight);
-            }
+            //Was used for debugging
         }
-        else if(curUserState == UserStates.cultist_taskmaster)
+        else if (curUserState == UserStates.cultist_taskmaster)
         {
-
+            
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
-            if(tileCultist)
+            if (!tileCultist)
             {
-                if (tileCultist.curLeaderState == Cultist.LeaderState.none)
-                {
-                    if (mana >= 20)
-                    {
-                        DeltaMana(-20);
-                    }
-                    else
-                    {
-                        //Not enough mana thing here?
-                        return;
-                    }
-                }
-                Debug.Log("Updating LEADER");
-                tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
+                curUserState = UserStates.cultist;
+                //SUUUPER HACKY
+                TileClicked(tile);
+                curUserState = UserStates.cultist_taskmaster;
             }
-        }
-        else if(curUserState == UserStates.necromancer)
-        {
-          Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
-          if(tileCultist)
-          {
-              if (tileCultist.curLeaderState != Cultist.LeaderState.necromancer)
-              {
-                if (mana >= 40)
+            if (tileCultist.curLeaderState == Cultist.LeaderState.none)
+            {
+                if (mana >= taskmasterCost)
                 {
-                    DeltaMana(-40);
+                    DeltaMana(-taskmasterCost);
                 }
                 else
                 {
-                    //Not enough mana thing here?
+                    NotEnoughMana();
                     return;
                 }
-                Debug.Log("Updating NECROMANCER");
-                tileCultist.UpdateLeader(Cultist.LeaderState.necromancer);
-              }
-          }
+            }
+            Debug.Log("Updating LEADER");
+            tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
+
+        }
+        else if (curUserState == UserStates.necromancer)
+        {
+            Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
+            if (tileCultist)
+            {
+                if (tileCultist.curLeaderState != Cultist.LeaderState.necromancer)
+                {
+                    if (mana >= necroCost)
+                    {
+                        DeltaMana(-necroCost);
+                    }
+                    else
+                    {
+                        NotEnoughMana();
+                        return;
+                    }
+                    Debug.Log("Updating NECROMANCER");
+                    tileCultist.UpdateLeader(Cultist.LeaderState.necromancer);
+                }
+            }
 
 
         }
-        else if(curUserState == UserStates.succubus)
+        else if (curUserState == UserStates.succubus)
         {
+            if (mana >= necroCost)
+            {
+                DeltaMana(-necroCost);
+            }
+            else
+            {
+                NotEnoughMana();
+                return;
+            }
             Succubus tileSuccubus = tile.CreateUnit<Succubus>(succubus);
         }
+    }
+
+    protected void NotEnoughMana()
+    {
+
     }
 
     public void Spell1Clicked()
@@ -271,13 +284,13 @@ public class PlayerController : MonoBehaviour
         if (mana + manaDelta <= maxMana)
         {
           SetMana(mana + manaDelta);
-          SetLife(life + 1);
+          SetLife(life + mana/10);
         }
         else
         {
-           maxMana = maxMana + 1;
+           maxMana = maxMana + mana/10;
            SetMana(maxMana);
-           SetLife(life + 3);
+           SetLife(life + mana/2);
         }
     }
 

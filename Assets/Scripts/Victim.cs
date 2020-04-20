@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Victim : BaseUnit
 {
-
+    public int manaBoost = 10;
     private Vector2Int dir;
 
     public Sprite[] types = new Sprite[6];
@@ -25,7 +25,7 @@ public class Victim : BaseUnit
         if (tile is SacrificialChamber)
         {
             //Sacrifice yourself!
-            PlayerController.Instance.DeltaMana(10);
+            PlayerController.Instance.DeltaMana(manaBoost);
             UnitDie();
         }
         else if (tile is Church)
