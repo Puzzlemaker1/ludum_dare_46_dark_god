@@ -7,7 +7,7 @@ using System;
 
 public class BaseUnit : MonoBehaviour
 {
-    
+
     public float updateTime = 1;
     public Sprite sprite1;
     public Sprite sprite2;
@@ -30,6 +30,7 @@ public class BaseUnit : MonoBehaviour
             Debug.LogError("Invalid unit initialization");
             return;
         }
+
         System.Type type = settings.GetType();
         System.Reflection.FieldInfo[] fields = type.GetFields();
 
