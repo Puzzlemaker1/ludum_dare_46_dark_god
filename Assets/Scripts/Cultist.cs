@@ -22,7 +22,7 @@ public class Cultist : BaseUnit
     public Vector2Int leaderDir = Vector2Int.up;
 
     public SpriteRenderer leaderSprite;
-    public SpriteRenderer necromancerSprite;
+    //public SpriteRenderer necromancerSprite;
 
     public float sacrificeGatherRate;
     public float sacrificeGatherHealthBonus;
@@ -33,6 +33,8 @@ public class Cultist : BaseUnit
     // Start is called before the first frame update
     override protected void UnitStart()
     {
+        curLeaderSprite = Instantiate(leaderSprite);
+        curLeaderSprite.enabled = false;
         curSacrificePoints = 0;
     }
 
@@ -64,8 +66,8 @@ public class Cultist : BaseUnit
         {
             if(newState == LeaderState.necromancer)
             {
-                Debug.Log("Adding Necromancer");
-                curLeaderSprite = Instantiate(necromancerSprite);
+                curLeaderSprite.enabled = true;
+                
                 curLeaderState = LeaderState.necromancer;
                 curLeaderSprite.sprite = necroSprite;
                 curLeaderSprite.transform.position = this.transform.position;
@@ -73,11 +75,11 @@ public class Cultist : BaseUnit
             }
             else if(newState == LeaderState.taskmaster)
             {
-                Debug.Log("Making new taskmaster!");
+                curLeaderSprite.enabled = true;
                 curLeaderState = LeaderState.taskmaster;
                 leaderDir = Vector2Int.up;
                 //leaderSprite = upLeader;
-                curLeaderSprite = Instantiate(leaderSprite);
+                
                 curLeaderSprite.sprite = upLeader;
                 curLeaderSprite.transform.position = this.transform.position;
                 curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;

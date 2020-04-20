@@ -119,23 +119,23 @@ public class PlayerController : MonoBehaviour
             moveVec.x += moveSpeed;
         }
 
-        if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Alpha1))
         {
             Spell1Clicked();
         }
-        if (Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             Spell2Clicked();
         }
-        if (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Alpha3))
         {
             Spell3Clicked();
         }
-        if (Input.GetKey(KeyCode.Alpha4) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Alpha4))
         {
             Spell4Clicked();
         }
-        if (Input.GetKey(KeyCode.Alpha5) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.Alpha5))
         {
             Spell5Clicked();
         }
@@ -267,6 +267,10 @@ public class PlayerController : MonoBehaviour
                 return;
             }
             Succubus tileSuccubus = tile.CreateUnit<Succubus>(succubus);
+        }
+        else if(curUserState == UserStates.ghost)
+        {
+
         }
     }
 
