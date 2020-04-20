@@ -49,9 +49,7 @@ public class Victim : BaseUnit
             {
                 if (neighborCultists[i].Item1.curLeaderState == Cultist.LeaderState.taskmaster)
                 {
-                    dir = neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord;
-                    MoveUnit(dir);
-
+                    MoveUnit(neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord);
                     return;
                 }
             }

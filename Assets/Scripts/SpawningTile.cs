@@ -30,8 +30,9 @@ public class SpawningTile <T>  : Tile
                 spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
                 initialSpawn = false;
             }
-            else if(spawnedUnit.GetComponentInParent<Tile>().coord == this.coord)
+            else if(spawnedUnit == null || spawnedUnit.GetComponentInParent<Tile>().coord == this.coord)
             {
+                //if it's at home or it's been destroyed, spawn more!
                 spawnedUnit = CreateOrBoostUnit<T>(spawningUnit);
             }
         }
