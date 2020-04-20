@@ -1293,13 +1293,13 @@ MonoBehaviour:
   VolumeControl: {fileID: 0}
   manaText: {fileID: 1638923446}
   manaSlider: {fileID: 1096904316}
-  mana: 50
+  mana: 100
   maxMana: 100
   lifeText: {fileID: 2054631973}
   lifeSlider: {fileID: 1960051370}
-  life: 20
+  life: 100
   maxLife: 1000
-  cultistCost: 6
+  cultistCost: 5
   necroCost: 20
   succCost: 20
   taskmasterCost: 10

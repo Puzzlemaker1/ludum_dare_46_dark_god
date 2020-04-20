@@ -13,6 +13,7 @@ public class BaseUnit : MonoBehaviour
     public Sprite sprite2;
     public int health = 1;
     public int maxHealth = 5;
+    public int healthPerUnit = 1;
     public GameObject deathFX;
     public Camera SoundController;
     public AudioClip clip;
@@ -72,11 +73,13 @@ public class BaseUnit : MonoBehaviour
         }
 
         int curParticleCount = this.GetComponent<ParticleSystem>().particleCount;
-        if (curParticleCount < health)
+        //Get the total number of units that should be visible
+        int desiredParticleCount = Mathf.CeilToInt((float)health / (float)healthPerUnit);
+        if (curParticleCount < desiredParticleCount)
         {
             this.GetComponent<ParticleSystem>().Emit(1);
         }
-        else if (curParticleCount > health)
+        else if (curParticleCount > desiredParticleCount)
         {
             ParticleSystem.Particle[] particles = new ParticleSystem.Particle[curParticleCount];
             this.GetComponent<ParticleSystem>().GetParticles(particles);

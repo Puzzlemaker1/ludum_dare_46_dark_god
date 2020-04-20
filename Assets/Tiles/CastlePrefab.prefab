@@ -121,12 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7f627669cfd94da0079a38b8a2c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateTime: 1
   blocking: 0
   coord: {x: 0, y: 0}
-  sacrificeMultiplier: 0
-  ticksTillRespawn: 50
+  ticksTillRespawn: 20
   initialSpawnTicks: 10
   randomDelayMax: 10
-  totalSpawns: 1
+  minLifeToSpawn: 0
+  healthPerSpawn: 3
   spawningUnit: {fileID: -7450504419167669928, guid: d78b06e901ca3394ea8c7756695d68ea,
     type: 3}

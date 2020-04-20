@@ -45,16 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c948433281653544e8c27edcfe8916fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateTime: 1
   blocking: 0
   coord: {x: 0, y: 0}
-  sacrificeMultiplier: 0
-  ticksTillRespawn: 100
-  initialSpawnTicks: 10
+  ticksTillRespawn: 60
+  initialSpawnTicks: 1
   randomDelayMax: 10
-  totalSpawns: 1
+  minLifeToSpawn: 200
+  healthPerSpawn: 3
   spawningUnit: {fileID: 1208472717411927010, guid: 592a3371d5406f64f82d0fdb0e63694f,
     type: 3}
-  ticksTillSpawn: 2
 --- !u!212 &7309337460710377630
 SpriteRenderer:
   m_ObjectHideFlags: 0
