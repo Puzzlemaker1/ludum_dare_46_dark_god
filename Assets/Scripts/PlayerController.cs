@@ -23,8 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject charactorBase;
     public Cultist cultist;
-    public BaseUnit necromancer;
-    public BaseUnit villager;
+    public Ghost ghost;
     public Victim victim;
     public Zombie zombie;
     public Succubus succubus;
@@ -270,7 +269,16 @@ public class PlayerController : MonoBehaviour
         }
         else if(curUserState == UserStates.ghost)
         {
-
+            if (mana >= ghostCost)
+            {
+                DeltaMana(-ghostCost);
+            }
+            else
+            {
+                NotEnoughMana();
+                return;
+            }
+            Ghost tileGhost = tile.CreateUnit<Ghost>(ghost);
         }
     }
 

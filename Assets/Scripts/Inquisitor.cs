@@ -94,4 +94,9 @@ public class Inquisitor : BaseUnit
         }
 
     }
+
+    public void EndWander()
+    {
+        curWanderTime = wanderTime + 1;
+    }
 }
