@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 TileClicked(tile);
                 curUserState = UserStates.cultist_taskmaster;
             }
-            if (tileCultist.curLeaderState == Cultist.LeaderState.none)
+            else if (tileCultist.curLeaderState == Cultist.LeaderState.none)
             {
                 if (mana >= taskmasterCost)
                 {

@@ -124,9 +124,10 @@ MonoBehaviour:
   updateTime: 1
   blocking: 0
   coord: {x: 0, y: 0}
-  ticksTillRespawn: 50
+  ticksTillRespawn: 20
   initialSpawnTicks: 10
   randomDelayMax: 10
   minLifeToSpawn: 0
+  healthPerSpawn: 3
   spawningUnit: {fileID: -7450504419167669928, guid: d78b06e901ca3394ea8c7756695d68ea,
     type: 3}

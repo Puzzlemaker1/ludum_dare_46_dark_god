@@ -48,7 +48,7 @@ MonoBehaviour:
   updateTime: 1
   blocking: 0
   coord: {x: 0, y: 0}
-  ticksTillRespawn: 20
+  ticksTillRespawn: 60
   initialSpawnTicks: 1
   randomDelayMax: 10
   minLifeToSpawn: 200
