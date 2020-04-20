@@ -58,7 +58,9 @@ SpriteAtlas:
     - {fileID: 21300000, guid: c648b568973edc04b88c1df1ed9cb789, type: 3}
     - {fileID: 21300000, guid: e60d4453f2509c743a124ecd93fff000, type: 3}
     - {fileID: 21300000, guid: 8ae905e57035c9b4f889990f3e1ed13f, type: 3}
-    totalSpriteSurfaceArea: 160000
+    - {fileID: 21300000, guid: 8253c6d52c6463a48ad5c32156d7d525, type: 3}
+    - {fileID: 21300000, guid: 28df7f3a48a55a845b4109c17f56b4e4, type: 3}
+    totalSpriteSurfaceArea: 180000
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -67,10 +69,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e60d4453f2509c743a124ecd93fff000, type: 3}
   - {fileID: 21300000, guid: 6ffbf41523eaaac439ec4538f78f3ae4, type: 3}
   - {fileID: 21300000, guid: 2c04c1559ae902e4481d065ae88342aa, type: 3}
+  - {fileID: 21300000, guid: 8253c6d52c6463a48ad5c32156d7d525, type: 3}
   - {fileID: 21300000, guid: 8ae905e57035c9b4f889990f3e1ed13f, type: 3}
   - {fileID: 21300000, guid: e8082716a006c554580a2f1df66c8121, type: 3}
   - {fileID: 21300000, guid: 7857a727d2586dd4794455c64413f154, type: 3}
   - {fileID: 21300000, guid: c648b568973edc04b88c1df1ed9cb789, type: 3}
+  - {fileID: 21300000, guid: 28df7f3a48a55a845b4109c17f56b4e4, type: 3}
   - {fileID: 21300000, guid: 60460d7a58cc56e4e88560a402862f12, type: 3}
   - {fileID: 21300000, guid: 1c35ddbab542a2f4787dcb857cf9bab3, type: 3}
   - {fileID: 21300000, guid: 7829941b4d5c73e4c93cef41e6666d52, type: 3}
@@ -84,10 +88,12 @@ SpriteAtlas:
   - SpellNecromancerHightlight
   - BaseTile
   - SpellSuccubus
+  - SpellGhost
   - SpellSuccubusHightlight
   - SpellNecromancer
   - Spell2knight
   - SpellLeaderHightlight
+  - SpellGhostHighlight
   - SpellCultistHightlight
   - TavernTile
   - HouseTile
