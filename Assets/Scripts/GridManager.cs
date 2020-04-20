@@ -62,8 +62,8 @@ public class GridManager : MonoBehaviour
                     Tile newTile = Instantiate(tileTuple.Item2);
                     if (tileTuple.Item2 is House)
                     {
-                        //Randomize population slightly.
-                        ((House)newTile).maxPopulation -= Random.Range(0, 5);
+                        //Randomize houses slightly.  Reduce houses by up to 2.
+                        ((House)newTile).maxPopulation -= Random.Range(0, 3) * ((House)newTile).popPerHouse;
                     }
                     towns[townCount].Add(newTile);
                 }

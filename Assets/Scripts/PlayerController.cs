@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public enum UserStates
     {
-        leader,
+        cultist_taskmaster,
         cultist,
         necromancer,
         succubus,
@@ -170,13 +170,13 @@ public class PlayerController : MonoBehaviour
                 tileKnight = tile.CreateUnit<Knight>(knight);
             }
         }
-        else if(curUserState == UserStates.leader)
+        else if(curUserState == UserStates.cultist_taskmaster)
         {
 
             Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
             if(tileCultist)
             {
-                if (tileCultist.hasLeader == Cultist.LeaderState.none)
+                if (tileCultist.curLeaderState == Cultist.LeaderState.none)
                 {
                     if (mana >= 20)
                     {
@@ -189,7 +189,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 Debug.Log("Updating LEADER");
-                tileCultist.UpdateLeader();
+                tileCultist.UpdateLeader(Cultist.LeaderState.taskmaster);
             }
         }
         else if(curUserState == UserStates.necromancer)
@@ -197,7 +197,7 @@ public class PlayerController : MonoBehaviour
           Cultist tileCultist = tile.GetComponentInChildren<Cultist>();
           if(tileCultist)
           {
-              if (tileCultist.hasLeader != Cultist.LeaderState.necromancer)
+              if (tileCultist.curLeaderState != Cultist.LeaderState.necromancer)
               {
                 if (mana >= 40)
                 {
@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
                 Debug.Log("Updating NECROMANCER");
-                tileCultist.UpdateNecromancer();
+                tileCultist.UpdateLeader(Cultist.LeaderState.necromancer);
               }
           }
 
@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour
     }
     public void Spell4Clicked()
     {
-        curUserState = UserStates.leader;
+        curUserState = UserStates.cultist_taskmaster;
         unhighlight();
         SpellButton4.sprite = SpellButton4ImageHighlight;
     }

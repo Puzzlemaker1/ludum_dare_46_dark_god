@@ -124,9 +124,9 @@ MonoBehaviour:
   updateTime: 1
   blocking: 0
   coord: {x: 0, y: 0}
-  population: 8
-  maxPopulation: 8
-  popPerHouse: 2
+  population: 12
+  maxPopulation: 12
+  popPerHouse: 3
   popRecoverDelay: 100
   maxHousesDisplayable: 4
   houseSprite: {fileID: 7419369764670255089, guid: ce3d8ef334c255049a625e8b38d9a4f0,

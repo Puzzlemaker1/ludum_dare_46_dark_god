@@ -27,8 +27,8 @@ public class House : Tile
                 this.transform.position.y + (i%2 * 0.4f) - 0.2f + Random.Range(-0.01f, 0.01f));
             houseArray[i] = Instantiate(houseSprite, position, Quaternion.identity, this.transform.parent);
         }
-        totalFilledHouses = maxPopulation / popPerHouse;
-        if(totalFilledHouses < maxHousesDisplayable)
+        totalFilledHouses = Mathf.CeilToInt((float)maxPopulation / (float)popPerHouse);
+        if (totalFilledHouses < maxHousesDisplayable)
         {
             int invisibleCount = 0;
             int start = Random.Range(0, maxHousesDisplayable);
@@ -37,13 +37,17 @@ public class House : Tile
                 //Start the loop at a random point, so the visible houses are different each time.
                 houseArray[count].enabled = false;
                 invisibleCount++;
+                if((maxHousesDisplayable - invisibleCount) == totalFilledHouses)
+                {
+                    break;
+                }
             }
         }
         base.TileStart();
     }
     public override void TileUpdate()
     {
-        int housesNeeded = population / popPerHouse;
+        int housesNeeded = Mathf.CeilToInt((float)population / (float)popPerHouse);
         if (totalFilledHouses != housesNeeded)
         {
             for (int i = 0; i < houseArray.Length; i++)

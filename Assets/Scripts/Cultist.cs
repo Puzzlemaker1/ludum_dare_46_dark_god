@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Cultist : BaseUnit
-{
+{ 
     public Sprite leftLeader;
     public Sprite rightLeader;
     public Sprite upLeader;
@@ -12,60 +12,81 @@ public class Cultist : BaseUnit
 
     public enum LeaderState
     {
-        leader,
+        taskmaster,
         necromancer,
         none
     }
 
     //Make these getters and setters instead of this
-    public LeaderState hasLeader = LeaderState.none;
+    public LeaderState curLeaderState = LeaderState.none;
     public Vector2Int leaderDir = Vector2Int.up;
 
     public SpriteRenderer leaderSprite;
     public SpriteRenderer necromancerSprite;
+
+    public float sacrificeGatherRate;
+    public float sacrificeGatherHealthBonus;
+    private float curSacrificePoints;
     private SpriteRenderer curLeaderSprite = null;
+
+
     // Start is called before the first frame update
     override protected void UnitStart()
     {
+        curSacrificePoints = 0;
     }
 
 
     protected override void UnitUpdate()
     {
-        //Do your stuff here
+
         Tile parentTile = this.GetComponentInParent<Tile>();
         if (parentTile == null)
         {
             Debug.Log("ERROR");
         }
-        parentTile.CreateUnit<Victim>(PlayerController.Instance.victim);
+        if (parentTile is House && (parentTile as House).population != 0)
+        {
+            curSacrificePoints += sacrificeGatherRate + ((this.health - 1) * sacrificeGatherHealthBonus);
 
-    }
-    public void UpdateNecromancer()
-    {
-        Debug.Log("Adding Necromancer");
-        curLeaderSprite = Instantiate(necromancerSprite);
-        hasLeader = LeaderState.necromancer;
-        curLeaderSprite.sprite = necroSprite;
-        curLeaderSprite.transform.position = this.transform.position;
-        curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
-    }
-    public void UpdateLeader()
-    {
-        if(hasLeader == LeaderState.none)
-        {
-            Debug.Log("Making new leader!");
-            hasLeader = LeaderState.leader;
-            leaderDir = Vector2Int.up;
-            //leaderSprite = upLeader;
-            curLeaderSprite = Instantiate(leaderSprite);
-            curLeaderSprite.sprite = upLeader;
-            curLeaderSprite.transform.position = this.transform.position;
-            curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
+            if (curSacrificePoints >= 1)
+            {
+                parentTile.CreateUnit<Victim>(PlayerController.Instance.victim);
+                (parentTile as House).population--;
+                curSacrificePoints = 0;
+            }
         }
-        else if (hasLeader == LeaderState.leader)
+    }
+
+    public void UpdateLeader(LeaderState newState)
+    {
+        if(curLeaderState == LeaderState.none)
         {
-            Debug.Log("Updating Existing Leader");
+            if(newState == LeaderState.necromancer)
+            {
+                Debug.Log("Adding Necromancer");
+                curLeaderSprite = Instantiate(necromancerSprite);
+                curLeaderState = LeaderState.necromancer;
+                curLeaderSprite.sprite = necroSprite;
+                curLeaderSprite.transform.position = this.transform.position;
+                curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
+            }
+            else if(newState == LeaderState.taskmaster)
+            {
+                Debug.Log("Making new taskmaster!");
+                curLeaderState = LeaderState.taskmaster;
+                leaderDir = Vector2Int.up;
+                //leaderSprite = upLeader;
+                curLeaderSprite = Instantiate(leaderSprite);
+                curLeaderSprite.sprite = upLeader;
+                curLeaderSprite.transform.position = this.transform.position;
+                curLeaderSprite.transform.parent = this.GetComponentInParent<Tile>().transform;
+            }
+
+        }
+        else if (curLeaderState == LeaderState.taskmaster && newState == LeaderState.taskmaster)
+        {
+            Debug.Log("Updating Existing taskmaster");
             //Rotate in an infuriating fashion
             leaderDir.Set(leaderDir.y, leaderDir.x);
             if(leaderDir.x != 0)
@@ -90,41 +111,48 @@ public class Cultist : BaseUnit
                 curLeaderSprite.sprite = downLeader;
             }
         }
-        else if(hasLeader == LeaderState.necromancer)
+        else if(newState != curLeaderState)
         {
-            //Heyy, a necromancer!
+            ClearLeader();
+            UpdateLeader(newState);
         }
     }
 
     protected override void UnitDie()
     {
+        ClearLeader();
+
+        base.UnitDie();
+    }
+
+    protected void ClearLeader()
+    {
         if (curLeaderSprite != null)
         {
             Destroy(curLeaderSprite.gameObject);
         }
-
-        base.UnitDie();
+        curLeaderState = LeaderState.none;
     }
     public override void LoseHealth(int healthDelta)
     {
         this.health -= healthDelta;
         if (deathFX != null)
         {
-           Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
+            Instantiate<GameObject>(deathFX, this.transform.position, Quaternion.identity, this.GetComponentInParent<Tile>().transform);
         }
         if (clip != null)
         {
-          SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
+            SoundController.GetComponent<AudioSource>().PlayOneShot(clip);
         }
-        if (hasLeader == LeaderState.necromancer)
+        if (curLeaderState == LeaderState.necromancer)
         {
-          //spawn zombie
-          Tile parentTile = this.GetComponentInParent<Tile>();
-          if (parentTile == null)
-          {
-              Debug.Log("ERROR");
-          }
-          parentTile.CreateUnit<Zombie>(PlayerController.Instance.zombie);
+            //spawn zombie
+            Tile parentTile = this.GetComponentInParent<Tile>();
+            if (parentTile == null)
+            {
+                Debug.Log("ERROR");
+            }
+            parentTile.CreateUnit<Zombie>(PlayerController.Instance.zombie);
         }
         if (this.health <= 0)
         {

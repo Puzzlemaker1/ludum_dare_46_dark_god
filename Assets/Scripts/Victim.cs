@@ -21,42 +21,42 @@ public class Victim : BaseUnit
     {
         //Do your stuff here
 
-            Tile tile = GetComponentInParent<Tile>();
-            if(tile is SacrificialChamber)
+        Tile tile = GetComponentInParent<Tile>();
+        if (tile is SacrificialChamber)
+        {
+            //Sacrifice yourself!
+            PlayerController.Instance.DeltaMana(10);
+            UnitDie();
+        }
+        else if (tile is Church)
+        {
+            //Dunno?
+        }
+        Cultist cultist = tile.GetComponentInChildren<Cultist>();
+        if (cultist != null && (cultist.curLeaderState == Cultist.LeaderState.taskmaster))
+        {
+            dir = cultist.leaderDir;
+        }
+        if (dir.magnitude != 0)
+        {
+            MoveUnit(dir);
+        }
+        else
+        {
+            List<System.Tuple<Cultist, float>> neighborCultists = LocateGridEntity<Cultist>(1);
+            //don't bother checking closest...
+            for (int i = 0; i < neighborCultists.Count; i++)
             {
-                //Sacrifice yourself!
-                PlayerController.Instance.DeltaMana(10);
-                UnitDie();
-            }
-            else if(tile is Church)
-            {
-                //Dunno?
-            }
-            Cultist cultist = tile.GetComponentInChildren<Cultist>();
-            if(cultist != null && (cultist.hasLeader == Cultist.LeaderState.leader))
-            {
-                dir = cultist.leaderDir;
-            }
-            if(dir.magnitude != 0)
-            {
-                MoveUnit(dir);
-            }
-            else
-            {
-                List<System.Tuple<Cultist, float>> neighborCultists = LocateGridEntity<Cultist>(1);
-                //don't bother checking closest...
-                for(int i = 0; i < neighborCultists.Count; i++)
+                if (neighborCultists[i].Item1.curLeaderState == Cultist.LeaderState.taskmaster)
                 {
-                    if(neighborCultists[i].Item1.hasLeader == Cultist.LeaderState.leader)
-                    {
-                        dir = neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord;
-                        MoveUnit(dir);
+                    dir = neighborCultists[i].Item1.GetComponentInParent<Tile>().coord - tile.coord;
+                    MoveUnit(dir);
 
-                        return;
-                    }
+                    return;
                 }
-
             }
+
+        }
 
 
     }
