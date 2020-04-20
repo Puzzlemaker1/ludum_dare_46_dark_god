@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8558126413290846253}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 4.008158, y: 1.0868776, z: -646.708}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &1114751799938583139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,13 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0920382058745c947ae3e68d84e6a5cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updateTime: 1
   sprite1: {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
   sprite2: {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
   health: 1
+  maxHealth: 5
   deathFX: {fileID: 0}
   SoundController: {fileID: 0}
   clip: {fileID: 0}
-  ticksTillMove: 10
+  maxMove: 1
   types:
   - {fileID: 21300000, guid: 4b82ab8d9f1f61c4a9796b3c5b482647, type: 3}
   - {fileID: 21300000, guid: c635c3af879374a4fb03588425cd2a54, type: 3}
